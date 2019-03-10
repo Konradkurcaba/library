@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -26,7 +27,7 @@ public class Borrowing {
 	@JoinColumn(name = "user_id")
 	User user;
 	
-	@OneToMany
+	@ManyToMany()
 	@JoinColumn(name = "book_id")
 	Set<Book> books;
 

@@ -1,12 +1,14 @@
 package library.entities;
 
 import java.time.Year;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Book {
@@ -16,6 +18,8 @@ public class Book {
 	@Column(name = "book_id")
 	private long bookId;
 	private String uuid = UUID.randomUUID().toString();
+	@ManyToMany(mappedBy="books")
+	private Set<Borrowing>borrowings;
 	
 	private String title;
 	private String isbn;

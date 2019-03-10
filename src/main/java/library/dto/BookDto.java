@@ -2,6 +2,8 @@ package library.dto;
 
 import java.time.Year;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import library.entities.Book;
 import library.entities.BookCategoryE;
 
@@ -9,61 +11,76 @@ public class BookDto {
 	
 	private Book book;
 
+	private StringProperty title;
+	private StringProperty isbn;
+	private StringProperty author;
+	private StringProperty year;
+	private StringProperty category;
+	private StringProperty quantity;
+	
 	public BookDto(Book book) {
 		super();
 		this.book = book;
+		
+		title = new SimpleStringProperty(book.getTitle());
+		isbn = new SimpleStringProperty(book.getIsbn());
+		author = new SimpleStringProperty(book.getAuthor());
+		year = new SimpleStringProperty(book.getYearOfPublication().toString());
+		category = new SimpleStringProperty(book.getCategory().toString());
+		quantity = new SimpleStringProperty(String.valueOf(book.getQuantity()));
 	}
 
-	public long getId() {
-		return book.getId();
+	public StringProperty getId() {
+		return new SimpleStringProperty(Long.toString(book.getId()));
 	}
+	
 
-	public String getTitle() {
-		return book.getTitle();
+	public StringProperty getTitle() {
+		return title;
 	}
 
 	public void setTitle(String title) {
-		book.setTitle(title);
+		//to do 
 	}
 
-	public String getIsbn() {
-		return book.getIsbn();
+	public StringProperty getIsbn() {
+		return isbn;
 	}
 
 	public void setIsbn(String isbn) {
-		book.setIsbn(isbn);
+		//todo
 	}
 
-	public BookCategoryE getCategory() {
-		return book.getCategory();
+	public StringProperty getCategory() {
+		return category;
 	}
 
 	public void setCategory(BookCategoryE category) {
-		book.setCategory(category);
+		//todo
 	}
 
-	public String getAuthor() {
-		return book.getAuthor();
+	public StringProperty getAuthor() {
+		return author;
 	}
 
 	public void setAuthor(String author) {
-		book.setAuthor(author);
+		//todo
 	}
 
-	public Year getYearOfPublication() {
-		return book.getYearOfPublication();
+	public StringProperty getYearOfPublication() {
+		return year;
 	}
 
 	public void setYearOfPublication(Year yearOfPublication) {
-		book.setYearOfPublication(yearOfPublication);
+		//todo
 	}
 
-	public int getQuantity() {
-		return book.getQuantity();
+	public StringProperty getQuantity() {
+		return quantity;
 	}
 
 	public void setQuantity(int quantity) {
-		book.setQuantity(quantity);
+		//todo
 	}
 	
 	
