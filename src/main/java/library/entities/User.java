@@ -12,6 +12,7 @@ public class User {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "user_id")
 	private long userId;
 
 	@Column(name = "first_name")

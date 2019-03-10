@@ -29,5 +29,44 @@ public class Borrowing {
 	@OneToMany
 	@JoinColumn(name = "book_id")
 	Set<Book> books;
+
+	
+	
+	
+	
+	public long getBorrowingId() {
+		return borrowingId;
+	}
+
+	public void setBorrowingId(long borrowingId) {
+		this.borrowingId = borrowingId;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Set<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
+	}
+	
+	
+	
 	
 }

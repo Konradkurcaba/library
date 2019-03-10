@@ -21,7 +21,12 @@ public class Main {
 		
 		
 		entityManger.getTransaction().begin();
-	//	entityManger.persist(user);
+		entityManger.persist(user);
+		entityManger.getTransaction().commit();
+		
+		user.setLastName("Malina");
+		
+		entityManger.getTransaction().begin();
 		entityManger.getTransaction().commit();
 	}
 	
