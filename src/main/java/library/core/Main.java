@@ -15,7 +15,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import library.controller.BooksPanelController;
 import library.entities.Book;
-import library.entities.BookCategoryE;
+import library.entities.Category;
 
 
 public class Main extends Application {
@@ -46,9 +46,11 @@ public class Main extends Application {
 	{
 		EntityManager entityManager = EntityManagerProvider.getEntityManager();
 		
+		Category cat = new Category("Dla dzieci");
+		
 		Book book = new Book();
 		book.setTitle("O Psie który jeżdził koleją");
-		book.setCategory(BookCategoryE.Cooking);
+		book.setCategory(cat);
 		book.setAuthor("Andrzej Plebs");
 		book.setQuantity(11);
 		book.setIsbn("5454545fddff");
@@ -56,6 +58,7 @@ public class Main extends Application {
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(book);
+		entityManager.persist(cat);
 		entityManager.getTransaction().commit();
 	}
 }

@@ -8,7 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -20,10 +22,12 @@ public class Book {
 	private String uuid = UUID.randomUUID().toString();
 	@ManyToMany(mappedBy="books")
 	private Set<Borrowing>borrowings;
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
 	
 	private String title;
 	private String isbn;
-	private BookCategoryE category;
 	private String author;
 	@Column(name = "year_of_publication")
 	private Year yearOfPublication;
@@ -46,11 +50,11 @@ public class Book {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public BookCategoryE getCategory() {
-		return category;
+	public String getCategory() {
+		return category.getCategoryName();
 	}
-	public void setCategory(BookCategoryE category) {
-		this.category = category;
+	public void setCategory(Category aCategory) {
+		category = aCategory;
 	}
 	public String getAuthor() {
 		return author;
