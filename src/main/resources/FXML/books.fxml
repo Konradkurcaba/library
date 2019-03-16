@@ -31,21 +31,20 @@
             <Insets bottom="20.0" top="20.0" />
          </padding>
       </Label>
-      <Button fx:id="editButton" mnemonicParsing="false" text="Edit" GridPane.rowIndex="2" />
-      <Button fx:id="newButton" mnemonicParsing="false" text="New" GridPane.rowIndex="2">
+      <Button fx:id="onEditButton" mnemonicParsing="false" text="On" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets left="50.0" />
+            <Insets left="60.0" />
+         </GridPane.margin></Button>
+      <Button fx:id="saveButton" mnemonicParsing="false" text="Save" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="100.0" />
          </GridPane.margin>
       </Button>
       <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets left="110.0" />
+            <Insets left="160.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="saveButton" mnemonicParsing="false" text="Save" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets left="170.0" />
-         </GridPane.margin>
-      </Button>
+      <Label text="Edit Mode:" GridPane.rowIndex="2" />
    </children>
 </GridPane>

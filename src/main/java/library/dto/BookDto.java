@@ -41,7 +41,6 @@ public class BookDto {
 	}
 
 	public void setTitle(String aTitle) {
-		book.setTitle(aTitle);
 		title.setValue(aTitle);
 	}
 
@@ -50,7 +49,6 @@ public class BookDto {
 	}
 
 	public void setIsbn(String aIsbn) {
-		book.setIsbn(aIsbn);
 		isbn.setValue(aIsbn);
 	}
 
@@ -59,10 +57,7 @@ public class BookDto {
 	}
 
 	public void setCategory(String aCategory) {
-		CategoryBroker categoryBroker = new CategoryBroker();
-		
-		CategoryDto catDto = categoryBroker.getOrCreate(aCategory);
-		book.setCategory(catDto.getCategory());
+
 		category.setValue(aCategory);
 	}
 
@@ -71,7 +66,6 @@ public class BookDto {
 	}
 
 	public void setAuthor(String aAuthor) {
-		book.setAuthor(aAuthor);
 		author.setValue(aAuthor);
 	}
 
@@ -79,29 +73,35 @@ public class BookDto {
 		return year;
 	}
 
-	public void setYearOfPublication(String aYearOfPublication) {
-		try {
-			Year yearOfPublication = Year.of(Integer.valueOf(aYearOfPublication));
-			book.setYearOfPublication(yearOfPublication);
-			year.setValue(aYearOfPublication);
-		} catch (NumberFormatException aEx) {
-			aEx.printStackTrace();
-		}
+	public void setYearOfPublication(String aYearOfPublication) throws NumberFormatException {
+		
+		year.setValue(aYearOfPublication);
 	}
 
 	public StringProperty getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String aQuantity) {
-		try {
-			int convertedQuantity = Integer.valueOf(aQuantity);
-			book.setQuantity(convertedQuantity);
-			quantity.setValue(aQuantity);
-		} catch (NumberFormatException aEx) {
-			aEx.printStackTrace();
-		}
-
+	public void setQuantity(String aQuantity) throws NumberFormatException {
+		quantity.setValue(aQuantity);
+	}
+	
+	public void commitChanges()
+	{
+		book.setAuthor(author.getValue());
+		book.setIsbn(isbn.getValue());
+		book.setTitle(title.getValue());
+		
+		int convertedYear = Integer.valueOf(year.getValue());
+		Year yearOfPublication = Year.of(convertedYear);
+		book.setYearOfPublication(yearOfPublication);
+		
+		int convertedQuantity = Integer.valueOf(quantity.getValue());
+		book.setQuantity(convertedQuantity);
+		
+		CategoryBroker categoryBroker = new CategoryBroker();
+		CategoryDto catDto = categoryBroker.CreateCategory(category.getValue());
+		book.setCategory(catDto.getCategory());
 	}
 
 }

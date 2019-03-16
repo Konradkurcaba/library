@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 import org.jboss.jandex.TypeTarget.Usage;
 
 import javafx.application.Application;
@@ -38,14 +39,14 @@ public class Main extends Application {
 		BooksPanelController controller = loader.getController();
 		controller.init();
 		
+		
 		primaryStage.show();
 	}
 	
 
 	public static void dirtyCode()
 	{
-		EntityManager entityManager = EntityManagerProvider.getEntityManager();
-		
+		EntityManager entityManager =  Constants.emf.createEntityManager();
 		Category cat = new Category("Dla dzieci");
 		
 		Book book = new Book();
