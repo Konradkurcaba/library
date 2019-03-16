@@ -1,38 +1,56 @@
 package library.controller;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import library.broker.Broker;
+import library.broker.BrokerIf;
+import library.dto.BookDto;
 
 public abstract class AbstractWindowTableController<T> {
 
 	private String windowTitle;
-	protected Broker<T> broker;
+	protected BrokerIf<T> broker;
 	
 	public AbstractWindowTableController(String aWindowTitle) {
 		super();
 		windowTitle = aWindowTitle;
 	}
 	@FXML
-	protected Label windowLabel;
+	private Label windowLabel;
 	@FXML
-	protected TableView<T> tableView;
+	private TableView<T> tableView;
 	@FXML
-	protected Button onEditButton;
+	private Button onEditButton;
 	@FXML
-	protected Button saveButton;
+	private Button saveButton;
 	@FXML
-	protected Button newButton;
+	private Button deleteButton;
+	@FXML
+	private Button newButton;
 	
-	protected abstract void initTableView();
+	protected abstract List<TableColumn<T,String>> configureTableViewColumns();
 	
 	public void init()
 	{
 		windowLabel.setText(windowTitle);
-		initTableView();
+		configureTableView();
+		configureTableViewColumns();
 		initButtons();
+	}
+	
+	protected void configureTableView()
+	{
+		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		tableView.getColumns().clear();
+		tableView.getColumns().addAll(configureTableViewColumns());
+		List<T> books = broker.getAll();
+		tableView.getItems().addAll(books);
 	}
 	
 	protected void initButtons()
@@ -53,6 +71,19 @@ public abstract class AbstractWindowTableController<T> {
 			tableView.refresh();
 		});
 		
+		deleteButton.setOnAction(clicked ->{
+			List<T> selectedDtos = tableView.getSelectionModel().getSelectedItems();
+			broker.delete(selectedDtos);
+			tableView.getItems().removeAll(selectedDtos);
+			tableView.refresh();
+		});
+		
+		newButton.setOnAction(clicked ->{
+			T newDto = broker.create();
+			tableView.getItems().add(newDto);
+		});
+		
 	}
+	
 	
 }

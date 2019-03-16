@@ -1,6 +1,7 @@
 package library.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXML;
@@ -12,23 +13,24 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import library.broker.BookBroker;
-import library.broker.Broker;
+import library.broker.BrokerIf;
 import library.entities.Book;
 import library.dto.BookDto;
 
 public class BooksPanelController extends AbstractWindowTableController<BookDto>{
 	
 	private static String WINDOW_NAME = "Ksiązki";
+	
 	public BooksPanelController() {
 		super(WINDOW_NAME);
 		broker = new BookBroker();
 	}
 	
 	@Override
-	protected void initTableView()
+	protected List<TableColumn<BookDto,String>> configureTableViewColumns()
 	{
-		TableColumn<BookDto,String> idCol = new TableColumn("ID");
-		idCol.setCellValueFactory(value -> value.getValue().getId());
+		
+		List<TableColumn<BookDto,String>> columns = new ArrayList();
 		
 		TableColumn<BookDto,String> titleCol = new TableColumn("Title");
 		titleCol.setCellValueFactory(value -> value.getValue().getTitle());
@@ -38,6 +40,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 			.get(event.getTablePosition().getRow())
 			.setTitle(event.getNewValue());
 		});
+		columns.add(titleCol);
 		
 		TableColumn<BookDto,String> authorCol = new TableColumn("Author");
 		authorCol.setCellValueFactory(value -> value.getValue().getAuthor());
@@ -56,6 +59,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 			.get(event.getTablePosition().getRow())
 			.setIsbn(event.getNewValue());
 		});
+		columns.add(isbnCol);
 		
 		TableColumn<BookDto,String> quantityCol = new TableColumn("Ilość");
 		quantityCol.setCellValueFactory(value -> value.getValue().getQuantity());
@@ -65,6 +69,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 			.get(event.getTablePosition().getRow())
 			.setQuantity(event.getNewValue());
 		});
+		columns.add(quantityCol);
 		
 		TableColumn<BookDto,String> yearCol = new TableColumn("Rok Wydania");
 		yearCol.setCellValueFactory(value -> value.getValue().getYearOfPublication());
@@ -75,6 +80,8 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 			.setYearOfPublication(event.getNewValue());
 		});
 		
+		columns.add(yearCol);
+		
 		TableColumn<BookDto,String> categoryCol = new TableColumn("Kategoria");
 		categoryCol.setCellValueFactory(value -> value.getValue().getCategory());
 		categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -84,15 +91,9 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 			.setCategory(event.getNewValue());
 		});
 		
-		
-		tableView.getColumns().clear();
-		
-		tableView.getColumns().addAll(idCol,titleCol,authorCol,isbnCol
-				,quantityCol,yearCol,categoryCol);
-		
-		List<BookDto> books = broker.getAll();
-		
-		tableView.getItems().addAll(books);
+		columns.add(categoryCol);
+
+		return columns;
 	
 	}
 	

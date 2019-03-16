@@ -46,5 +46,10 @@
          </GridPane.margin>
       </Button>
       <Label text="Edit Mode:" GridPane.rowIndex="2" />
+      <Button fx:id="newButton" mnemonicParsing="false" text="New" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="230.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </GridPane>

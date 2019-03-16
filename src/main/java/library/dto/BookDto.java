@@ -24,8 +24,15 @@ public class BookDto {
 		super();
 		this.book = book;
 
+		if(book.getTitle() != null)
 		title = new SimpleStringProperty(book.getTitle());
+		else new SimpleStringProperty("");
+		
+		if(book.getIsbn() != null)
 		isbn = new SimpleStringProperty(book.getIsbn());
+		else new SimpleStringProperty("");
+		
+		if(author)
 		author = new SimpleStringProperty(book.getAuthor());
 		year = new SimpleStringProperty(book.getYearOfPublication().toString());
 		category = new SimpleStringProperty(book.getCategory().toString());
@@ -86,6 +93,11 @@ public class BookDto {
 		quantity.setValue(aQuantity);
 	}
 	
+	
+	public Book getBook() {
+		return book;
+	}
+
 	public void commitChanges()
 	{
 		book.setAuthor(author.getValue());

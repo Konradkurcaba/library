@@ -15,11 +15,12 @@ import library.core.Constants;
 import library.dto.CategoryDto;
 import library.entities.Category;
 
-public class CategoryBroker {
+public class CategoryBroker implements BrokerIf<CategoryDto>{
 	
 	
 	private EntityManager entityManager = Constants.emf.createEntityManager();
 
+	@Override
 	public List<CategoryDto> getAll() {
 
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
@@ -50,6 +51,17 @@ public class CategoryBroker {
 
 	private List<CategoryDto> wrapIntoDto(List<Category> aCategories) {
 		return aCategories.stream().map(CategoryDto::new).collect(Collectors.toList());
+	}
+
+	@Override
+	public void commitChanges(List<CategoryDto> aCategoriesDto) {
+		
+	}
+
+	@Override
+	public void delete(List<CategoryDto> aDtoList) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -16,7 +16,7 @@ import library.core.Constants;
 import library.dto.BookDto;
 import library.entities.Book;
 
-public class BookBroker implements Broker<BookDto> {
+public class BookBroker implements BrokerIf<BookDto> {
 	
 	private EntityManager entityManager = Constants.emf.createEntityManager();
 
@@ -43,11 +43,24 @@ public class BookBroker implements Broker<BookDto> {
 		entityManager.getTransaction().commit();
 	}
 	
+	@Override
+	public void delete(List<BookDto> aBooks) {
+		aBooks.stream()
+		.map(BookDto::getBook)
+		.forEach(entityManager::remove);
+	}
+	
+	@Override
+	public BookDto create() {
+		return new BookDto(new Book());
+	}
+
 	private List<BookDto> wrapBooks(List<Book> aBooks)
 	{
 		return aBooks.stream()
 				.map(BookDto::new)
 				.collect(Collectors.toList());
 	}
+
 	
 }
