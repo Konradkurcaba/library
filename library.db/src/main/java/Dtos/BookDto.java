@@ -6,131 +6,137 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import Brokers.CategoryBroker;
 import Entities.Book;
-import Dtos.CategoryDto;
 
 public class BookDto {
 
-	private Book book;
-	private boolean isPersisted;
+    private Book book;
+    private boolean isPersisted;
 
-	private StringProperty title;
-	private StringProperty isbn;
-	private StringProperty author;
-	private StringProperty year;
-	private StringProperty category;
-	private StringProperty quantity;
-	
-	public BookDto(Book book) {
-		super();
-		this.book = book;
+    private StringProperty title;
+    private StringProperty isbn;
+    private StringProperty author;
+    private StringProperty year;
+    private StringProperty category;
+    private StringProperty quantity;
 
-		title = new SimpleStringProperty(book.getTitle());
-		isbn = new SimpleStringProperty(book.getIsbn());
-		author = new SimpleStringProperty(book.getAuthor());
-		year = new SimpleStringProperty(book.getYearOfPublication().toString());
-		category = new SimpleStringProperty(book.getCategory().toString());
-		quantity = new SimpleStringProperty(String.valueOf(book.getQuantity()));
-		
-		isPersisted = true;
-	}
-	
-	public BookDto()
-	{
-		isPersisted = false;
-		
-		title = new SimpleStringProperty("");
-		isbn = new SimpleStringProperty("");
-		author = new SimpleStringProperty("");
-		year = new SimpleStringProperty("");
-		category = new SimpleStringProperty("");
-		quantity = new SimpleStringProperty("");
-	}
+    public BookDto(Book book) {
+        super();
+        this.book = book;
 
-	public StringProperty getId() {
-		return new SimpleStringProperty(Long.toString(book.getId()));
-	}
+        title = new SimpleStringProperty(book.getTitle());
+        isbn = new SimpleStringProperty(book.getIsbn());
+        author = new SimpleStringProperty(book.getAuthor());
+        year = new SimpleStringProperty(book.getYearOfPublication().toString());
+        category = new SimpleStringProperty(book.getCategory().toString());
+        quantity = new SimpleStringProperty(String.valueOf(book.getQuantity()));
 
-	public StringProperty getTitle() {
-		return title;
-	}
+        isPersisted = true;
+    }
 
-	public void setTitle(String aTitle) {
-		title.setValue(aTitle);
-	}
+    public BookDto() {
+        isPersisted = false;
 
-	public StringProperty getIsbn() {
-		return isbn;
-	}
+        title = new SimpleStringProperty("");
+        isbn = new SimpleStringProperty("");
+        author = new SimpleStringProperty("");
+        year = new SimpleStringProperty("");
+        category = new SimpleStringProperty("");
+        quantity = new SimpleStringProperty("");
+    }
 
-	public void setIsbn(String aIsbn) {
-		isbn.setValue(aIsbn);
-	}
+    public StringProperty getId() {
+        return new SimpleStringProperty(Long.toString(book.getId()));
+    }
 
-	public StringProperty getCategory() {
-		return category;
-	}
+    public StringProperty getTitle() {
+        return title;
+    }
 
-	public void setCategory(String aCategory) {
+    public void setTitle(String aTitle) {
+        title.setValue(aTitle);
+    }
 
-		category.setValue(aCategory);
-	}
+    public StringProperty getIsbn() {
+        return isbn;
+    }
 
-	public StringProperty getAuthor() {
-		return author;
-	}
+    public void setIsbn(String aIsbn) {
+        isbn.setValue(aIsbn);
+    }
 
-	public void setAuthor(String aAuthor) {
-		author.setValue(aAuthor);
-	}
+    public StringProperty getCategory() {
+        return category;
+    }
 
-	public StringProperty getYearOfPublication() {
-		return year;
-	}
+    public void setCategory(String aCategory) {
 
-	public void setYearOfPublication(String aYearOfPublication) throws NumberFormatException {
-		
-		year.setValue(aYearOfPublication);
-	}
+        category.setValue(aCategory);
+    }
 
-	public StringProperty getQuantity() {
-		return quantity;
-	}
+    public StringProperty getAuthor() {
+        return author;
+    }
 
-	public void setQuantity(String aQuantity) throws NumberFormatException {
-		quantity.setValue(aQuantity);
-	}
-	
-	
-	public Book getBook() {
-		return book;
-	}
-	
-	public void setBook(Book aEntity)
-	{
-		book = aEntity;
-		isPersisted = true;
-	}
-	
-	public boolean isPersisted() {
-		return isPersisted;
-	}
+    public void setAuthor(String aAuthor) {
+        author.setValue(aAuthor);
+    }
 
-	public void commitChanges()
-	{
-		book.setAuthor(author.getValue());
-		book.setIsbn(isbn.getValue());
-		book.setTitle(title.getValue());
-		
-		int convertedYear = Integer.valueOf(year.getValue());
-		Year yearOfPublication = Year.of(convertedYear);
-		book.setYearOfPublication(yearOfPublication);
-		
-		int convertedQuantity = Integer.valueOf(quantity.getValue());
-		book.setQuantity(convertedQuantity);
-		
-		CategoryBroker categoryBroker = new CategoryBroker();
-		CategoryDto catDto = categoryBroker.getCategory(category.getValue());
-		book.setCategory(catDto.getCategory());
-	}
+    public StringProperty getYearOfPublication() {
+        return year;
+    }
+
+    public void setYearOfPublication(String aYearOfPublication) throws NumberFormatException {
+
+        year.setValue(aYearOfPublication);
+    }
+
+    public StringProperty getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String aQuantity) throws NumberFormatException {
+        quantity.setValue(aQuantity);
+    }
+
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book aEntity) {
+        book = aEntity;
+        isPersisted = true;
+    }
+
+    public boolean isPersisted() {
+        return isPersisted;
+    }
+
+    public boolean wasNotificationSent()
+    {
+        return book.wasNotificationSent();
+    }
+
+    public void notificationSent()
+    {
+        book.setWasNotificationSent(true);
+    }
+
+    public void commitChanges() {
+        book.setAuthor(author.getValue());
+        book.setIsbn(isbn.getValue());
+        book.setTitle(title.getValue());
+
+        int convertedYear = Integer.valueOf(year.getValue());
+        Year yearOfPublication = Year.of(convertedYear);
+        book.setYearOfPublication(yearOfPublication);
+
+        int convertedQuantity = Integer.valueOf(quantity.getValue());
+        book.setQuantity(convertedQuantity);
+
+        CategoryBroker categoryBroker = new CategoryBroker();
+        CategoryDto catDto = categoryBroker.getCategory(category.getValue());
+        book.setCategory(catDto.getCategory());
+    }
 
 }

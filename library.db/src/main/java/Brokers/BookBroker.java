@@ -16,6 +16,7 @@ import Entities.Book;
 public class BookBroker implements BrokerIf<BookDto> {
 	
 	private EntityManager entityManager = PersistenceManager.emf.createEntityManager();
+	private String GET_BOOKS_TO_SEND_NOTIFICATION = "SELECT b FROM Book b WHERE wasNotificationSent = false";
 
 	@Override
 	public List<BookDto> getAll()
@@ -68,6 +69,16 @@ public class BookBroker implements BrokerIf<BookDto> {
 	private List<BookDto> wrapBooks(List<Book> aBooks)
 	{
 		return aBooks.stream()
+				.map(BookDto::new)
+				.collect(Collectors.toList());
+	}
+
+	public List<BookDto> getBooksWithoutNotification()
+	{
+		List<Book> books = entityManager.createQuery(GET_BOOKS_TO_SEND_NOTIFICATION)
+				.getResultList();
+
+		return books.stream()
 				.map(BookDto::new)
 				.collect(Collectors.toList());
 	}
