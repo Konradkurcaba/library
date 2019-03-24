@@ -12,5 +12,12 @@
     <packaging>jar</packaging>
     <artifactId>library.server</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
+        </dependency>
+    </dependencies>
 
 </project>
