@@ -1,83 +1,148 @@
 package Dtos;
 
 import Entities.User;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class UserDto {
 
-	private User user;
+    private User user;
+    private boolean isPersisted;
 
-	public UserDto(User user) {
-		super();
-		this.user = user;
-	}
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private StringProperty zipCode;
+    private StringProperty city;
+    private StringProperty street;
+    private StringProperty houseNumber;
+    private StringProperty phoneNumber;
+    private StringProperty email;
 
-	public long getId() {
-		return user.getId();
-	}
+    public UserDto(User user) {
+        this.user = user;
+        firstName = new SimpleStringProperty(user.getFirstName());
+        lastName = new SimpleStringProperty(user.getLastName());
+        zipCode = new SimpleStringProperty(user.getZipCode());
+        city = new SimpleStringProperty(user.getCity());
+        street = new SimpleStringProperty(user.getStreet());
+        houseNumber = new SimpleStringProperty(user.getHouseNumber());
+        phoneNumber = new SimpleStringProperty(user.getPhoneNumber());
+        email = new SimpleStringProperty(user.getEmail());
 
-	public String getFirstName() {
-		return user.getFirstName();
-	}
+        isPersisted = true;
+    }
 
-	public void setFirstName(String firstName) {
-		user.setFirstName(firstName);
-	}
+    public UserDto()
+    {
+        firstName = new SimpleStringProperty("");
+        lastName = new SimpleStringProperty("");
+        zipCode = new SimpleStringProperty("");
+        city = new SimpleStringProperty("");
+        street = new SimpleStringProperty("");
+        houseNumber = new SimpleStringProperty("");
+        phoneNumber = new SimpleStringProperty("");
+        email = new SimpleStringProperty("");
 
-	public String getLastName() {
-		return user.getLastName();
-	}
+        isPersisted = false;
+    }
 
-	public void setLastName(String lastName) {
-		user.setLastName(lastName);
-	}
+    public String getFirstName() {
+        return firstName.get();
+    }
 
-	public String getZipCode() {
-		return user.getZipCode();
-	}
+    public StringProperty firstNameProperty() {
+        return firstName;
+    }
 
-	public void setZipCode(String zipCode) {
-		user.setZipCode(zipCode);
-	}
+    public void setFirstName(String firstName) {
+        this.firstName.set(firstName);
+    }
 
-	public String getCity() {
-		return user.getCity();
-	}
+    public String getLastName() {
+        return lastName.get();
+    }
 
-	public void setCity(String city) {
-		user.setCity(city);
-	}
+    public StringProperty lastNameProperty() {
+        return lastName;
+    }
 
-	public String getStreet() {
-		return user.getStreet();
-	}
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
+    }
 
-	public void setStreet(String street) {
-		user.setStreet(street);
-	}
+    public String getZipCode() {
+        return zipCode.get();
+    }
 
-	public String getHouseNumber() {
-		return user.getHouseNumber();
-	}
+    public StringProperty zipCodeProperty() {
+        return zipCode;
+    }
 
-	public void setHouseNumber(String houseNumber) {
-		user.setHouseNumber(houseNumber);
-	}
+    public void setZipCode(String zipCode) {
+        this.zipCode.set(zipCode);
+    }
 
-	public String getPhoneNumber() {
-		return user.getPhoneNumber();
-	}
+    public String getCity() {
+        return city.get();
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		user.setPhoneNumber(phoneNumber);
-	}
+    public StringProperty cityProperty() {
+        return city;
+    }
 
-	public String getEmail() {
-		return user.getEmail();
-	}
+    public void setCity(String city) {
+        this.city.set(city);
+    }
 
-	public void setEmail(String email) {
-		user.setEmail(email);
-	}
-	
-	
+    public String getStreet() {
+        return street.get();
+    }
+
+    public StringProperty streetProperty() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street.set(street);
+    }
+
+    public String getHouseNumber() {
+        return houseNumber.get();
+    }
+
+    public StringProperty houseNumberProperty() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber.set(houseNumber);
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber.get();
+    }
+
+    public StringProperty phoneNumberProperty() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber.set(phoneNumber);
+    }
+
+    public String getEmail() {
+        return email.get();
+    }
+
+    public StringProperty emailProperty() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
+    public boolean isPersisted() {
+        return isPersisted;
+    }
 }

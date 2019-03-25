@@ -73,7 +73,7 @@ public class BookBroker implements BrokerIf<BookDto> {
 				.collect(Collectors.toList());
 	}
 
-	public List<BookDto> getBooksWithoutNotification()
+	public List<BookDto> getBooksToNotify()
 	{
 		List<Book> books = entityManager.createQuery(GET_BOOKS_TO_SEND_NOTIFICATION)
 				.getResultList();
