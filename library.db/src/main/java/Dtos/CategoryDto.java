@@ -31,7 +31,8 @@ public class CategoryDto {
 	public Category getCategory() {
 		return category;
 	}
-	
-	
-	
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName.set(categoryName);
+	}
 }

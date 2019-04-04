@@ -49,31 +49,31 @@ public class EmployeeDto {
         return isPersisted;
     }
 
-    public StringProperty firstNameProperty() {
+    public StringProperty getFirstName() {
         return firstName;
     }
 
-    public StringProperty lastNameProperty() {
+    public StringProperty getLastName() {
         return lastName;
     }
 
 
-    public StringProperty zipCodeProperty() {
+    public StringProperty getZipCode() {
         return zipCode;
     }
 
 
-    public StringProperty cityProperty() {
+    public StringProperty getCity() {
         return city;
     }
 
 
-    public StringProperty streetProperty() {
+    public StringProperty getStreet() {
         return street;
     }
 
 
-    public StringProperty houseNumberProperty() {
+    public StringProperty getHouseNumber() {
         return houseNumber;
     }
 

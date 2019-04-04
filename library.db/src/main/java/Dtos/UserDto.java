@@ -46,11 +46,7 @@ public class UserDto {
         isPersisted = false;
     }
 
-    public String getFirstName() {
-        return firstName.get();
-    }
-
-    public StringProperty firstNameProperty() {
+    public StringProperty getFirstName() {
         return firstName;
     }
 
@@ -58,11 +54,7 @@ public class UserDto {
         this.firstName.set(firstName);
     }
 
-    public String getLastName() {
-        return lastName.get();
-    }
-
-    public StringProperty lastNameProperty() {
+    public StringProperty getLastName() {
         return lastName;
     }
 
@@ -70,11 +62,7 @@ public class UserDto {
         this.lastName.set(lastName);
     }
 
-    public String getZipCode() {
-        return zipCode.get();
-    }
-
-    public StringProperty zipCodeProperty() {
+    public StringProperty getZipCode() {
         return zipCode;
     }
 
@@ -82,11 +70,7 @@ public class UserDto {
         this.zipCode.set(zipCode);
     }
 
-    public String getCity() {
-        return city.get();
-    }
-
-    public StringProperty cityProperty() {
+    public StringProperty getCity() {
         return city;
     }
 
@@ -94,11 +78,7 @@ public class UserDto {
         this.city.set(city);
     }
 
-    public String getStreet() {
-        return street.get();
-    }
-
-    public StringProperty streetProperty() {
+    public StringProperty getStreet() {
         return street;
     }
 
@@ -106,11 +86,7 @@ public class UserDto {
         this.street.set(street);
     }
 
-    public String getHouseNumber() {
-        return houseNumber.get();
-    }
-
-    public StringProperty houseNumberProperty() {
+    public StringProperty getHouseNumber() {
         return houseNumber;
     }
 
@@ -118,11 +94,7 @@ public class UserDto {
         this.houseNumber.set(houseNumber);
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber.get();
-    }
-
-    public StringProperty phoneNumberProperty() {
+    public StringProperty getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -130,16 +102,16 @@ public class UserDto {
         this.phoneNumber.set(phoneNumber);
     }
 
-    public String getEmail() {
-        return email.get();
-    }
-
-    public StringProperty emailProperty() {
+    public StringProperty getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email.set(email);
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public boolean isPersisted() {

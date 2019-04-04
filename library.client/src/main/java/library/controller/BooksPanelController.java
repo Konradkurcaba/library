@@ -25,7 +25,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 		
 		List<TableColumn<BookDto,String>> columns = new ArrayList();
 		
-		TableColumn<BookDto,String> titleCol = new TableColumn("Title");
+		TableColumn<BookDto,String> titleCol = new TableColumn("Tytuł");
 		titleCol.setCellValueFactory(value -> value.getValue().getTitle());
 		titleCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		titleCol.setOnEditCommit( event ->{
@@ -35,7 +35,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 		});
 		columns.add(titleCol);
 		
-		TableColumn<BookDto,String> authorCol = new TableColumn("Author");
+		TableColumn<BookDto,String> authorCol = new TableColumn("Autor");
 		authorCol.setCellValueFactory(value -> value.getValue().getAuthor());
 		authorCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		authorCol.setOnEditCommit( event ->{
