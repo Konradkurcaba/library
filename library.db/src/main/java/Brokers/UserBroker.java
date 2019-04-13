@@ -41,7 +41,7 @@ public class UserBroker implements BrokerIf<UserDto> {
         return null;
     }
 
-    //todo 
+    //todo
     public List<String> getAllEmails()
     {
         return null;

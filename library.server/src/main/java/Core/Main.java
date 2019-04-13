@@ -1,10 +1,7 @@
 package Core;
 
-import Brokers.BookBroker;
-import Dtos.BookDto;
 import Email.EmailSender;
-
-import java.util.List;
+import Email.MailCreator;
 
 
 public class Main {

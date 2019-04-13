@@ -1,5 +1,8 @@
 package Entities;
 
+import java.sql.Date;
+import java.sql.SQLData;
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,7 +19,7 @@ public class Borrowing {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "borrowing_id")
+	@Column(name = "borrow_id")
 	private long borrowingId;
 	
 	@OneToOne
@@ -31,43 +34,34 @@ public class Borrowing {
 	@JoinColumn(name = "book_id")
 	Set<Book> books;
 
-	
-	
-	
-	
+	@Column(name = "start_borrow_date")
+	private LocalDate startBorrowDate;
+
+	@Column(name = "end_borrow_date")
+	private LocalDate endBorrowDate;
+
+
 	public long getBorrowingId() {
 		return borrowingId;
-	}
-
-	public void setBorrowingId(long borrowingId) {
-		this.borrowingId = borrowingId;
 	}
 
 	public Employee getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
 	public User getUser() {
 		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public Set<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(Set<Book> books) {
-		this.books = books;
+	public LocalDate getStartBorrowDate() {
+		return startBorrowDate;
 	}
-	
-	
-	
-	
+
+	public LocalDate getEndBorrowDate() {
+		return endBorrowDate;
+	}
 }
