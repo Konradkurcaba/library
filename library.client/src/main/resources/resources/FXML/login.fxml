@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <PasswordField layoutX="260.0" layoutY="258.0" prefHeight="25.0" prefWidth="179.0" />
+      <TextField layoutX="260.0" layoutY="201.0" prefHeight="25.0" prefWidth="179.0" />
+      <ImageView fitHeight="208.0" fitWidth="294.0" layoutX="153.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/logo.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="121.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/background_color.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="190.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logowanie">
+         <font>
+            <Font name="Century Gothic" size="46.0" />
+         </font>
+      </Text>
+      <Text fill="#2d034d" layoutX="164.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#2d034d" layoutX="164.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hasło">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

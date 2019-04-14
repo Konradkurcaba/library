@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="483.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXML.Menu">
+   <children>
+      <ImageView fitHeight="122.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/background_color.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="140.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wypożyczenia">
+         <font>
+            <Font name="Century Gothic" size="46.0" />
+         </font>
+      </Text>
+      <Button layoutX="237.0" layoutY="383.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../../css/DarkTheme.css" text="Wyloguj">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="385.0" layoutY="383.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../../css/DarkTheme.css" text="Pomoc">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font>
+      </Button>
+      <Line cache="true" endX="485.0" layoutX="115.0" layoutY="324.0" startX="-115.0" stroke="#2b0349" strokeLineCap="ROUND" style="-fx-effect: 2;">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#2b0349" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <Reflection />
+         </effect>
+      </Line>
+      <Button layoutX="87.0" layoutY="383.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../../css/DarkTheme.css" text="Powrót">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font>
+      </Button>
+      <TableView layoutX="-1.0" layoutY="119.0" prefHeight="204.0" prefWidth="601.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
