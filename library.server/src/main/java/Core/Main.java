@@ -12,10 +12,9 @@ public class Main {
         {
             MailCreator mailCreator = new MailCreator();
             String message = mailCreator.getMailBody();
-        
 
             EmailSender sender = new EmailSender();
-            sender.sendMail("konradkurcaba@gmail.com","Hello",message);
+            sender.sendMail("jechojnacka@gmail.com","Hello",message);
 
 
 

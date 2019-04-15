@@ -1,4 +1,4 @@
-package library.core;
+package library.Core;
 
 import javax.persistence.EntityManager;
 
@@ -8,8 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import library.controller.BooksPanelController;
+import library.Controller.BooksPanelController;
 import EntityManager.PersistenceManager;
+import library.Controller.LoginPanelController;
 
 public class Main extends Application {
 
@@ -23,14 +24,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
-				.getResource("FXML/books.fxml"));
+				.getResource("FXML/login.fxml"));
 		
 		Parent root = loader.load();
 		primaryStage.setScene(new Scene(root));
 		
-		BooksPanelController controller = loader.getController();
+		LoginPanelController controller = loader.getController();
 		controller.init();
-		
 		
 		primaryStage.show();
 	}

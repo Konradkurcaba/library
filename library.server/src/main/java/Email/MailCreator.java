@@ -22,17 +22,9 @@ public class MailCreator {
 
     public String getMailBody() throws IOException
     {
-        List<BookDto> books = new BookBroker().getBooksToNotify();
-        StringBuilder builder = new StringBuilder();
-
-        books.stream()
-                .map(bookDto -> {
-                    return bookDto.getTitle().getValue() + " " + bookDto.getAuthor().getValue();
-                })
-                .forEach(builder::append);
-
-        pepareBody(readPatternFromFile());
-        String parsed = readPatternFromFile().html();
+        Document rawEmailPattern = readPatternFromFile();
+        Document createdEmailBody = pepareBody(rawEmailPattern);
+        String parsed = createdEmailBody.html();
         return parsed;
     }
 
@@ -51,20 +43,25 @@ public class MailCreator {
     {
         Element mainTable = aEmail.getElementById("mainTable");
         Element tableContent = mainTable.selectFirst("tbody");
-        tableContent.append("<tr> \n" +
-                " <td>...</td> \n" +
-                " <td>...</td> \n" +
-                " <td>...</td> \n" +
-                " <td>...</td> \n" +
-                "</tr>");
-        System.out.println(tableContent.html());
-        return null;
+        List<BookDto> books = new BookBroker().getBooksToNotify();
+
+        books.stream()
+                .map(this::createRow)
+                .forEach(tableContent::append);
+
+        return aEmail;
     }
 
     private String createRow(BookDto aBook)
     {
         StringBuilder builder = new StringBuilder();
-
+        builder.append("<tr> \n");
+        builder.append("<td>" + aBook.getAuthor().getValue()+ "</td> \n");
+        builder.append("<td>" + aBook.getTitle().getValue()+ "</td> \n");
+        builder.append("<td>" + aBook.getIsbn().getValue()+ "</td> \n");
+        builder.append("<td>" + aBook.getQuantity().getValue()+ "</td> \n");
+        builder.append("</tr>");
+        return builder.toString();
     }
 
 }

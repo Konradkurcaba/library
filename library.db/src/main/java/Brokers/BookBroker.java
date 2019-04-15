@@ -83,5 +83,10 @@ public class BookBroker implements BrokerIf<BookDto> {
 				.collect(Collectors.toList());
 	}
 
+	public void markBooksAsNotified()
+	{
+		//to do
+	}
+
 	
 }

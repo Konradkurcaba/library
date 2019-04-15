@@ -1,27 +1,28 @@
-package library.controller;
+package library.Controller;
 
-import Brokers.EmployeeBroker;
-import Dtos.EmployeeDto;
+import Brokers.UserBroker;
+import Dtos.UserDto;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeePanelController extends AbstractWindowTableController<EmployeeDto> {
+public class UserPanelController extends AbstractWindowTableController<UserDto> {
 
-    private static String WINDOW_NAME = "Pracownicy";
+    private static String WINDOW_NAME = "Użytkownicy";
 
-    public EmployeePanelController() {
+    public UserPanelController() {
         super(WINDOW_NAME);
-        broker = new EmployeeBroker();
+        broker = new UserBroker();
     }
 
     @Override
-    protected List<TableColumn<EmployeeDto, String>> configureTableViewColumns() {
-        List<TableColumn<EmployeeDto,String>> columns = new ArrayList();
+    protected List<TableColumn<UserDto, String>> configureTableViewColumns() {
 
-        TableColumn<EmployeeDto,String> firstNameCol = new TableColumn("Imię");
+        List<TableColumn<UserDto,String>> columns = new ArrayList();
+
+        TableColumn<UserDto,String> firstNameCol = new TableColumn("Imię");
         firstNameCol.setCellValueFactory(value -> value.getValue().getFirstName());
         firstNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         firstNameCol.setOnEditCommit( event ->{
@@ -31,7 +32,7 @@ public class EmployeePanelController extends AbstractWindowTableController<Emplo
         });
         columns.add(firstNameCol);
 
-        TableColumn<EmployeeDto,String> lastNameCol = new TableColumn("Nazwisko");
+        TableColumn<UserDto,String> lastNameCol = new TableColumn("Nazwisko");
         lastNameCol.setCellValueFactory(value -> value.getValue().getLastName());
         lastNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameCol.setOnEditCommit( event ->{
@@ -42,7 +43,7 @@ public class EmployeePanelController extends AbstractWindowTableController<Emplo
 
         columns.add(lastNameCol);
 
-        TableColumn<EmployeeDto,String> zipCodeCol = new TableColumn("Kod pocztowy");
+        TableColumn<UserDto,String> zipCodeCol = new TableColumn("Kod pocztowy");
         zipCodeCol.setCellValueFactory(value -> value.getValue().getZipCode());
         zipCodeCol.setCellFactory(TextFieldTableCell.forTableColumn());
         zipCodeCol.setOnEditCommit( event ->{
@@ -52,7 +53,7 @@ public class EmployeePanelController extends AbstractWindowTableController<Emplo
         });
         columns.add(zipCodeCol);
 
-        TableColumn<EmployeeDto,String> cityCol = new TableColumn("Miasto");
+        TableColumn<UserDto,String> cityCol = new TableColumn("Miasto");
         cityCol.setCellValueFactory(value -> value.getValue().getCity());
         cityCol.setCellFactory(TextFieldTableCell.forTableColumn());
         cityCol.setOnEditCommit( event ->{
@@ -62,7 +63,7 @@ public class EmployeePanelController extends AbstractWindowTableController<Emplo
         });
         columns.add(cityCol);
 
-        TableColumn<EmployeeDto,String> streetCol = new TableColumn("Ulica");
+        TableColumn<UserDto,String> streetCol = new TableColumn("Ulica");
         streetCol.setCellValueFactory(value -> value.getValue().getStreet());
         streetCol.setCellFactory(TextFieldTableCell.forTableColumn());
         streetCol.setOnEditCommit( event ->{
@@ -73,7 +74,7 @@ public class EmployeePanelController extends AbstractWindowTableController<Emplo
 
         columns.add(streetCol);
 
-        TableColumn<EmployeeDto,String> houseNumberCol = new TableColumn("Nr domu");
+        TableColumn<UserDto,String> houseNumberCol = new TableColumn("Nr domu");
         houseNumberCol.setCellValueFactory(value -> value.getValue().getHouseNumber());
         houseNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
         houseNumberCol.setOnEditCommit( event ->{
@@ -83,6 +84,28 @@ public class EmployeePanelController extends AbstractWindowTableController<Emplo
         });
 
         columns.add(houseNumberCol);
+
+        TableColumn<UserDto,String> phoneNumberCol = new TableColumn("Telefon");
+        phoneNumberCol.setCellValueFactory(value -> value.getValue().getPhoneNumber());
+        phoneNumberCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        phoneNumberCol.setOnEditCommit( event ->{
+            event.getTableView().getItems()
+                    .get(event.getTablePosition().getRow())
+                    .setPhoneNumber(event.getNewValue());
+        });
+
+        columns.add(phoneNumberCol);
+
+        TableColumn<UserDto,String> emailCol = new TableColumn("Email");
+        emailCol.setCellValueFactory(value -> value.getValue().getEmail());
+        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailCol.setOnEditCommit( event ->{
+            event.getTableView().getItems()
+                    .get(event.getTablePosition().getRow())
+                    .setEmail(event.getNewValue());
+        });
+
+        columns.add(emailCol);
 
         return columns;
     }

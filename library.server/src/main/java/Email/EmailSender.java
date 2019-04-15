@@ -20,6 +20,7 @@ public class EmailSender {
         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(aRecipient));
         message.setSubject(aSubject);
 
+
         MimeBodyPart mimeBodyPart = new MimeBodyPart();
         mimeBodyPart.setContent(aMessage,"text/html; charset=UTF-8");
 
