@@ -12,7 +12,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.Controller.LoginPanelController">
    <children>
       <PasswordField fx:id="passwordField" layoutX="193.0" layoutY="257.0" prefHeight="25.0" prefWidth="179.0" />
-      <TextField fx:id="logField" layoutX="193.0" layoutY="200.0" prefHeight="25.0" prefWidth="179.0" />
+      <TextField fx:id="loginField" layoutX="193.0" layoutY="200.0" prefHeight="25.0" prefWidth="179.0" />
       <ImageView fitHeight="208.0" fitWidth="294.0" layoutX="153.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/logo.PNG" />
@@ -38,7 +38,7 @@
             <Font name="Century Gothic" size="20.0" />
          </font>
       </Text>
-      <Button layoutX="401.0" layoutY="221.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Zaloguj">
+      <Button fx:id="loginButton" layoutX="401.0" layoutY="221.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Zaloguj">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>

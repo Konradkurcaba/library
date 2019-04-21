@@ -3,6 +3,7 @@ package library.Core;
 import javax.persistence.EntityManager;
 
 import Entities.Category;
+import Entities.LoginData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,13 +12,16 @@ import javafx.stage.Stage;
 import library.Controller.BooksPanelController;
 import EntityManager.PersistenceManager;
 import library.Controller.LoginPanelController;
+import library.Login.LoginHelper;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Main extends Application {
 
 	
 	public static void main(String...aArgs)
 	{
-		//dirtyCode();
 		launch();
 	}
 
@@ -40,18 +44,29 @@ public class Main extends Application {
 	{
 		EntityManager entityManager =  PersistenceManager.emf.createEntityManager();
 		Category cat = new Category("Dla dzieci");
-		
-//		Book book = new Book();
-//		book.setTitle("O Psie który jeżdził koleją");
-//		book.setCategory(cat);
-//		book.setAuthor("Andrzej Plebs");
-//		book.setQuantity(11);
-//		book.setIsbn("5454545fddff");
-//		book.setYearOfPublication(Year.of(1995));
+
+		byte[] passwordHash = null;
+		String password = "konrad123";
+		try {
+
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			passwordHash = md.digest(password.getBytes());
+
+
+		}catch (NoSuchAlgorithmException aEx)
+		{
+			aEx.printStackTrace();
+		}
+
+		LoginData loginData = new LoginData();
+		loginData.setAccountName("konrad");
+		loginData.setPassword(passwordHash);
+
+
 //		
-//		entityManager.getTransaction().begin();
-//		entityManager.persist(book);
-//		entityManager.persist(cat);
-//		entityManager.getTransaction().commit();
+		entityManager.getTransaction().begin();
+		entityManager.persist(loginData);
+		entityManager.persist(cat);
+		entityManager.getTransaction().commit();
 	}
 }

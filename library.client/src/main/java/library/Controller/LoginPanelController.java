@@ -1,13 +1,20 @@
 package library.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import library.Login.LoginHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.awt.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class LoginPanelController {
+
+    private final static Logger logger = LogManager.getLogger(LoginPanelController.class);
+    private final static String HASH_ALGORITHM = "SHA-256";
 
     @FXML
     TextField loginField;
@@ -16,11 +23,11 @@ public class LoginPanelController {
     PasswordField passwordField;
 
     @FXML
-    Button logButton;
+    Button loginButton;
 
     public void init()
     {
-        logButton.addActionListener( event ->{
+        loginButton.setOnAction( event ->{
             String login = loginField.getText();
             String password = passwordField.getText();
             try {
@@ -28,9 +35,17 @@ public class LoginPanelController {
                 MessageDigest md = MessageDigest.getInstance("SHA-256");
                 byte[] passwordHash = md.digest(password.getBytes());
 
+                LoginHelper loginHelper = new LoginHelper();
+                boolean loginSuccess = loginHelper.tryToLogin(login,passwordHash);
+                if(loginSuccess)
+                {
+                    System.out.println("success");
+                }
+
             }catch (NoSuchAlgorithmException aEx)
             {
                 aEx.printStackTrace();
+                logger.debug("Hash algorithm : " + HASH_ALGORITHM + " doesn't exist");
             }
 
         });
