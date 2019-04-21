@@ -1,9 +1,14 @@
 package library.Controller;
 
+import Entities.AccountType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import library.Login.LoginHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,16 +22,20 @@ public class LoginPanelController {
     private final static String HASH_ALGORITHM = "SHA-256";
 
     @FXML
-    TextField loginField;
+    private TextField loginField;
 
     @FXML
-    PasswordField passwordField;
+    private PasswordField passwordField;
 
     @FXML
-    Button loginButton;
+    private Button loginButton;
 
-    public void init()
+    private Stage primaryStage;
+
+
+    public void init(Stage aPrimaryStage)
     {
+        primaryStage = aPrimaryStage;
         loginButton.setOnAction( event ->{
             String login = loginField.getText();
             String password = passwordField.getText();
@@ -39,7 +48,8 @@ public class LoginPanelController {
                 boolean loginSuccess = loginHelper.tryToLogin(login,passwordHash);
                 if(loginSuccess)
                 {
-                    System.out.println("success");
+                    AccountType accountType = loginHelper.getCurrentAccountType();
+                    openMainMenu(accountType);
                 }
 
             }catch (NoSuchAlgorithmException aEx)
@@ -49,6 +59,25 @@ public class LoginPanelController {
             }
 
         });
+    }
+
+    private void openMainMenu(AccountType aAccountType)
+    {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
+                    .getResource("FXML/menu_employee.fxml"));
+
+            Parent root = loader.load();
+            primaryStage.setScene(new Scene(root));
+
+        EmplMenuController controller = loader.getController();
+
+        //primaryStage.show();
+        }catch (Exception aEx)
+        {
+            logger.debug(aEx);
+        }
     }
 
 

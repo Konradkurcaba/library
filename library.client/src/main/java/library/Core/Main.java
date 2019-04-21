@@ -34,7 +34,7 @@ public class Main extends Application {
 		primaryStage.setScene(new Scene(root));
 		
 		LoginPanelController controller = loader.getController();
-		controller.init();
+		controller.init(primaryStage);
 		
 		primaryStage.show();
 	}
