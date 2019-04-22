@@ -2,6 +2,7 @@ package library.Core;
 
 import javax.persistence.EntityManager;
 
+import Brokers.UserBroker;
 import Entities.Category;
 import Entities.LoginData;
 import javafx.application.Application;
@@ -22,6 +23,7 @@ public class Main extends Application {
 	
 	public static void main(String...aArgs)
 	{
+		dirtyCode();
 		launch();
 	}
 
@@ -42,31 +44,34 @@ public class Main extends Application {
 
 	public static void dirtyCode()
 	{
-		EntityManager entityManager =  PersistenceManager.emf.createEntityManager();
-		Category cat = new Category("Dla dzieci");
+//		EntityManager entityManager =  PersistenceManager.emf.createEntityManager();
+//		Category cat = new Category("Dla dzieci");
+//
+//		byte[] passwordHash = null;
+//		String password = "konrad123";
+//		try {
+//
+//			MessageDigest md = MessageDigest.getInstance("SHA-256");
+//			passwordHash = md.digest(password.getBytes());
+//
+//
+//		}catch (NoSuchAlgorithmException aEx)
+//		{
+//			aEx.printStackTrace();
+//		}
+//
+//		LoginData loginData = new LoginData();
+//		loginData.setAccountName("konrad");
+//		loginData.setPassword(passwordHash);
+//
+//
+////
+//		entityManager.getTransaction().begin();
+//		entityManager.persist(loginData);
+//		entityManager.persist(cat);
+//		entityManager.getTransaction().commit();
 
-		byte[] passwordHash = null;
-		String password = "konrad123";
-		try {
-
-			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			passwordHash = md.digest(password.getBytes());
-
-
-		}catch (NoSuchAlgorithmException aEx)
-		{
-			aEx.printStackTrace();
-		}
-
-		LoginData loginData = new LoginData();
-		loginData.setAccountName("konrad");
-		loginData.setPassword(passwordHash);
-
-
-//		
-		entityManager.getTransaction().begin();
-		entityManager.persist(loginData);
-		entityManager.persist(cat);
-		entityManager.getTransaction().commit();
+//		UserBroker userBroker = new UserBroker();
+//		System.out.println(userBroker.getAllEmails().toString());
 	}
 }

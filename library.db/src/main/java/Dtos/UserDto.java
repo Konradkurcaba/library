@@ -114,7 +114,26 @@ public class UserDto {
         return user;
     }
 
+    public void setUser(User aUser){
+        user = aUser;
+        isPersisted = true;
+    }
+
     public boolean isPersisted() {
         return isPersisted;
+    }
+
+    public void commitChanges()
+    {
+        user.setFirstName(firstName.getValue());
+        user.setLastName(lastName.getValue());
+        user.setCity(city.getValue());
+        user.setHouseNumber(houseNumber.getValue());
+        user.setPhoneNumber(phoneNumber.getValue());
+        user.setStreet(street.getValue());
+        user.setEmail(email.getValue());
+        user.setZipCode(zipCode.getValue());
+
+
     }
 }

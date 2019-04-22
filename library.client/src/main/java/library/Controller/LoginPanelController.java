@@ -20,6 +20,7 @@ public class LoginPanelController {
 
     private final static Logger logger = LogManager.getLogger(LoginPanelController.class);
     private final static String HASH_ALGORITHM = "SHA-256";
+    private final static String MENU_FXML_PATH = "FXML/menu.fxml";
 
     @FXML
     private TextField loginField;
@@ -33,6 +34,8 @@ public class LoginPanelController {
     private Stage primaryStage;
 
 
+
+
     public void init(Stage aPrimaryStage)
     {
         primaryStage = aPrimaryStage;
@@ -41,7 +44,7 @@ public class LoginPanelController {
             String password = passwordField.getText();
             try {
 
-                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                MessageDigest md = MessageDigest.getInstance(HASH_ALGORITHM);
                 byte[] passwordHash = md.digest(password.getBytes());
 
                 LoginHelper loginHelper = new LoginHelper();
@@ -66,14 +69,14 @@ public class LoginPanelController {
         try {
 
             FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
-                    .getResource("FXML/menu_employee.fxml"));
+                    .getResource(MENU_FXML_PATH));
 
             Parent root = loader.load();
             primaryStage.setScene(new Scene(root));
 
-        EmplMenuController controller = loader.getController();
+            MenuController controller = loader.getController();
+            controller.init(primaryStage);
 
-        //primaryStage.show();
         }catch (Exception aEx)
         {
             logger.debug(aEx);
