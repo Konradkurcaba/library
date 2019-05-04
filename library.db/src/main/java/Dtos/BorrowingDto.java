@@ -4,17 +4,20 @@ import Entities.Book;
 import Entities.Borrowing;
 import Entities.Employee;
 import Entities.User;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.time.LocalDate;
 import java.util.Set;
 
-public class BorrowingDto {
+public class BorrowingDto implements DtoWithCa {
 
 	private Borrowing borrowing;
 
-	private StringProperty startDate;
-	private StringProperty endDate;
+	private StringProperty startDate = new SimpleStringProperty("");
+	private StringProperty endDate = new SimpleStringProperty("");
+
+    private EmployeeDto employeeToPersist;
+    private UserDto userToPersist;
 
 	public BorrowingDto(Borrowing borrowing) {
 		super();
@@ -51,4 +54,29 @@ public class BorrowingDto {
         return borrowing.getBooks();
     }
 
+
+    @Override
+    public DtoCaValue getCaValue(DtoType aExpectedDto) {
+
+        switch (aExpectedDto)
+        {
+            case Employee:
+                return new EmployeeDto(getEmployee());
+            case User:
+                return new UserDto(getUser());
+            default: throw new IllegalArgumentException("This class doesn't contain expectedDto type");
+        }
+    }
+
+    @Override
+    public void setCaValue(DtoCaValue aNewDtoValue) {
+        if(aNewDtoValue instanceof EmployeeDto)
+        {
+            employeeToPersist = (EmployeeDto) aNewDtoValue;
+        }
+        else if(aNewDtoValue instanceof UserDto)
+        {
+            userToPersist = (UserDto) aNewDtoValue;
+        }
+    }
 }

@@ -4,7 +4,7 @@ import Entities.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class UserDto {
+public class UserDto implements DtoCaValue {
 
     private User user;
     private boolean isPersisted;
@@ -133,7 +133,10 @@ public class UserDto {
         user.setStreet(street.getValue());
         user.setEmail(email.getValue());
         user.setZipCode(zipCode.getValue());
+    }
 
-
+    @Override
+    public String getCaName() {
+        return lastName.getValue() + " " + firstName.getValue() + user.getId();
     }
 }

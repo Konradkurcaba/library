@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Brokers.BrokerIf;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -38,13 +39,12 @@ public abstract class AbstractWindowTableController<T> {
 	@FXML
 	private Button resetButton;
 	
-	protected abstract List<TableColumn<T,String>> configureTableViewColumns();
+	protected abstract List configureTableViewColumns();
 	
 	public void init()
 	{
 		windowLabel.setText(windowTitle);
 		configureTableView();
-		configureTableViewColumns();
 		initButtons();
 	}
 	

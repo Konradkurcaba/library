@@ -64,4 +64,28 @@ public class Borrowing {
 	public LocalDate getEndBorrowDate() {
 		return endBorrowDate;
 	}
+
+	public void setBorrowingId(long borrowingId) {
+		this.borrowingId = borrowingId;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
+	}
+
+	public void setStartBorrowDate(LocalDate startBorrowDate) {
+		this.startBorrowDate = startBorrowDate;
+	}
+
+	public void setEndBorrowDate(LocalDate endBorrowDate) {
+		this.endBorrowDate = endBorrowDate;
+	}
 }

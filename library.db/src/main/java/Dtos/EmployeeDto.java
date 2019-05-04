@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import Entities.Employee;
 
-public class EmployeeDto {
+public class EmployeeDto implements DtoCaValue {
 
     private Employee employee;
     private boolean isPersisted;
@@ -111,4 +111,10 @@ public class EmployeeDto {
 
         isPersisted = true;
     }
+
+    @Override
+    public String getCaName() {
+        return lastName.getValue() + " " + firstName.getValue() + " " + getEmployee().getId();
+    }
+
 }

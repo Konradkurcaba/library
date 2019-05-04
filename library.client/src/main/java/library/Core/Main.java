@@ -1,22 +1,18 @@
 package library.Core;
 
-import javax.persistence.EntityManager;
-
-import Brokers.UserBroker;
-import Entities.Category;
-import Entities.LoginData;
+import Entities.Borrowing;
+import Entities.Employee;
+import EntityManager.PersistenceManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import library.Controller.BooksPanelController;
-import EntityManager.PersistenceManager;
-import library.Controller.LoginPanelController;
-import library.Login.LoginHelper;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import library.Controller.LoginPanelController;
+
+import javax.persistence.EntityManager;
+
 
 public class Main extends Application {
 
@@ -44,7 +40,18 @@ public class Main extends Application {
 
 	public static void dirtyCode()
 	{
-//		EntityManager entityManager =  PersistenceManager.emf.createEntityManager();
+
+		Borrowing borrowing = new Borrowing();
+		Employee employee = new Employee();
+
+		employee.setFirstName("Adrianna");
+		employee.setLastName("Zolta");
+
+		borrowing.setEmployee(employee);
+
+
+
+		EntityManager entityManager =  PersistenceManager.emf.createEntityManager();
 //		Category cat = new Category("Dla dzieci");
 //
 //		byte[] passwordHash = null;
@@ -66,10 +73,12 @@ public class Main extends Application {
 //
 //
 ////
-//		entityManager.getTransaction().begin();
+		entityManager.getTransaction().begin();
 //		entityManager.persist(loginData);
 //		entityManager.persist(cat);
-//		entityManager.getTransaction().commit();
+		entityManager.persist(employee);
+		entityManager.persist(borrowing);
+		entityManager.getTransaction().commit();
 
 //		UserBroker userBroker = new UserBroker();
 //		System.out.println(userBroker.getAllEmails().toString());

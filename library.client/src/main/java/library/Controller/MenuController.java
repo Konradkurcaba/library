@@ -37,7 +37,7 @@ public class MenuController {
         });
 
         borrowButton.setOnAction(event -> {
-            BooksPanelController controller = new BooksPanelController();
+            BorrowingPanelController controller = new BorrowingPanelController();
             openNewWindow(controller);
         });
         userButton.setOnAction(event -> {
