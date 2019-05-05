@@ -137,6 +137,8 @@ public class UserDto implements DtoCaValue {
 
     @Override
     public String getCaName() {
-        return lastName.getValue() + " " + firstName.getValue() + user.getId();
+        if(lastName.getValue().isEmpty() || firstName.getValue().isEmpty()) return "";
+        else
+        return lastName.getValue() + " " + firstName.getValue() + " " + user.getId();
     }
 }

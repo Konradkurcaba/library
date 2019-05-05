@@ -53,8 +53,8 @@ public abstract class AbstractWindowTableController<T> {
 		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		tableView.getColumns().clear();
 		tableView.getColumns().addAll(configureTableViewColumns());
-		List<T> books = broker.getAll();
-		tableView.getItems().addAll(books);
+		List<T> items = broker.getAll();
+		tableView.getItems().addAll(items);
 	}
 	
 	protected void initButtons()
@@ -82,6 +82,7 @@ public abstract class AbstractWindowTableController<T> {
 		newButton.setOnAction(clicked ->{
 			T newDto = broker.create();
 			tableView.getItems().add(newDto);
+			tableView.getSelectionModel().selectLast();
 		});
 
 		resetButton.setOnAction(clicked ->{

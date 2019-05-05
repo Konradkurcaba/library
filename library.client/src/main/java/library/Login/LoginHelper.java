@@ -8,12 +8,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.persistence.NoResultException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 public class LoginHelper {
 
+    public final static String HASH_ALGORITHM = "SHA-256";
     private final static Logger logger = LogManager.getLogger(LoginHelper.class);
     private static LoginDataDto loginDataDto;
+
 
     public boolean tryToLogin(String aLogin, byte[] aPassword) {
         try {
@@ -33,6 +37,24 @@ public class LoginHelper {
     public AccountType getCurrentAccountType()
     {
         return loginDataDto.getType();
+    }
+
+    public byte[] createPasswordHash(String aPassword)
+    {
+        byte[] passwordHash = null;
+
+        try {
+
+            MessageDigest md = MessageDigest.getInstance(HASH_ALGORITHM);
+            passwordHash = md.digest(aPassword.getBytes());
+
+
+        }catch (NoSuchAlgorithmException aEx)
+        {
+            aEx.printStackTrace();
+            logger.debug("Hash algorithm : " + HASH_ALGORITHM + " doesn't exist");
+        }
+        return passwordHash;
     }
 
 }

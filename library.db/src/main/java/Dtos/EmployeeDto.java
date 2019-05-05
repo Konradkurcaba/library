@@ -114,6 +114,8 @@ public class EmployeeDto implements DtoCaValue {
 
     @Override
     public String getCaName() {
+        if(lastName.getValue().isEmpty() || firstName.getValue().isEmpty()) return "";
+        else
         return lastName.getValue() + " " + firstName.getValue() + " " + getEmployee().getId();
     }
 

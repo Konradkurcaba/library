@@ -24,16 +24,34 @@ public class BorrowingBroker implements BrokerIf<BorrowingDto> {
     @Override
     public void commitChanges(List<BorrowingDto> aDtoList) {
 
+        aDtoList.stream()
+                .filter(dto -> !dto.isPersisted())
+                .forEach(dto ->{
+                    Borrowing borrowing = new Borrowing();
+                    entityManager.persist(borrowing);
+                    dto.setBorrowing(borrowing);
+                });
+
+
+        aDtoList.stream()
+                .forEach(BorrowingDto::commitChanges);
+
+        entityManager.getTransaction().begin();
+        entityManager.getTransaction().commit();
+
 
     }
 
     @Override
     public void delete(List<BorrowingDto> aDtoList) {
 
+        aDtoList.stream()
+                .map(BorrowingDto::getBorrowing)
+                .forEach(entityManager::remove);
     }
 
     @Override
     public BorrowingDto create() {
-        return null;
+        return new BorrowingDto();
     }
 }
