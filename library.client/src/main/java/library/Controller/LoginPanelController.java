@@ -3,15 +3,20 @@ package library.Controller;
 import Entities.AccountType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import library.Login.LoginHelper;
+import library.Validation.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.controlsfx.control.Notifications;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +26,8 @@ public class LoginPanelController {
     private final static Logger logger = LogManager.getLogger(LoginPanelController.class);
     private final static String HASH_ALGORITHM = "SHA-256";
     private final static String MENU_FXML_PATH = "FXML/menu.fxml";
+
+    private Validator validator = new Validator();
 
     @FXML
     private TextField loginField;
@@ -42,25 +49,32 @@ public class LoginPanelController {
         loginButton.setOnAction( event ->{
             String login = loginField.getText();
             String password = passwordField.getText();
-            try {
+            if( (!login.isEmpty() && login !=null) && (!password.isEmpty() && password != null)){
+                try {
 
-                MessageDigest md = MessageDigest.getInstance(HASH_ALGORITHM);
-                byte[] passwordHash = md.digest(password.getBytes());
+                    MessageDigest md = MessageDigest.getInstance(HASH_ALGORITHM);
+                    byte[] passwordHash = md.digest(password.getBytes());
 
-                LoginHelper loginHelper = new LoginHelper();
-                boolean loginSuccess = loginHelper.tryToLogin(login,passwordHash);
-                if(loginSuccess)
+                    LoginHelper loginHelper = new LoginHelper();
+                    boolean loginSuccess = loginHelper.tryToLogin(login,passwordHash);
+                    if(loginSuccess)
+                    {
+                        AccountType accountType = loginHelper.getCurrentAccountType();
+                        openMainMenu(accountType);
+                    }
+                    else{
+                        validator.errorMessage("Niepoprawne dane logowania! Spróbuj ponownie");
+                    }
+
+                }catch (NoSuchAlgorithmException aEx)
                 {
-                    AccountType accountType = loginHelper.getCurrentAccountType();
-                    openMainMenu(accountType);
+                    aEx.printStackTrace();
+                    logger.debug("Hash algorithm : " + HASH_ALGORITHM + " doesn't exist");
                 }
-
-            }catch (NoSuchAlgorithmException aEx)
-            {
-                aEx.printStackTrace();
-                logger.debug("Hash algorithm : " + HASH_ALGORITHM + " doesn't exist");
             }
-
+            else{
+                validator.errorMessage("Brak loginu/hasła! Spróbuj ponownie.");
+            }
         });
     }
 
