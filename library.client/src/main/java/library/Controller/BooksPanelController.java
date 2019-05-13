@@ -77,7 +77,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 		
 		columns.add(yearCol);
 		
-		TableColumn<BookDto,String> categoryCol = new TableColumn("Kategoria");
+		TableColumn<BookDto,String> categoryCol = new TableColumn("Gatunek");
 		categoryCol.setCellValueFactory(value -> value.getValue().getCategory());
 		categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		categoryCol.setOnEditCommit( event ->{

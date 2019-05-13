@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CategoryPanelController extends AbstractWindowTableController<CategoryDto> {
 
-    private static String WINDOW_NAME = "Kategorie";
+    private static String WINDOW_NAME = "Gatunki";
 
     public CategoryPanelController() {
         super(WINDOW_NAME);
