@@ -12,7 +12,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 public class BooksPanelController extends AbstractWindowTableController<BookDto>{
 	
-	private static String WINDOW_NAME = "Ksiązki";
+	private static String WINDOW_NAME = "Książki";
 	
 	public BooksPanelController() {
 		super(WINDOW_NAME);
@@ -66,7 +66,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 		});
 		columns.add(quantityCol);
 		
-		TableColumn<BookDto,String> yearCol = new TableColumn("Rok Wydania");
+		TableColumn<BookDto,String> yearCol = new TableColumn("Rok wydania");
 		yearCol.setCellValueFactory(value -> value.getValue().getYearOfPublication());
 		yearCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		yearCol.setOnEditCommit( event ->{
