@@ -44,7 +44,7 @@ public class BorrowingPanelController extends AbstractWindowTableController<Borr
         });
         columns.add(startDateCol);
 
-        TableColumn<BorrowingDto,String> endDateCol = new TableColumn("Termin");
+        TableColumn<BorrowingDto,String> endDateCol = new TableColumn("Data oddania");
         endDateCol.setCellValueFactory(value -> value.getValue().endDateProperty());
         endDateCol.setCellFactory(TextFieldTableCell.forTableColumn());
         endDateCol.setOnEditCommit( event ->{
