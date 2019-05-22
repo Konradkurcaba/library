@@ -7,6 +7,7 @@ import javafx.beans.property.StringProperty;
 import Brokers.CategoryBroker;
 import Entities.Book;
 
+
 public class BookDto {
 
     private Book book;
@@ -53,6 +54,7 @@ public class BookDto {
     }
 
     public void setTitle(String aTitle) {
+        DtoValidator.checkText(aTitle);
         title.setValue(aTitle);
     }
 

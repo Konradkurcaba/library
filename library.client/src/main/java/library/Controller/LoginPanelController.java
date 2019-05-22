@@ -3,20 +3,16 @@ package library.Controller;
 import Entities.AccountType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import library.Login.LoginHelper;
-import library.Validation.Validator;
+import library.Validation.DtoValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.controlsfx.control.Notifications;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -27,7 +23,7 @@ public class LoginPanelController {
     private final static String HASH_ALGORITHM = "SHA-256";
     private final static String MENU_FXML_PATH = "FXML/menu.fxml";
 
-    private Validator validator = new Validator();
+    private DtoValidator validator = new DtoValidator();
 
     @FXML
     private TextField loginField;
@@ -39,9 +35,6 @@ public class LoginPanelController {
     private Button loginButton;
 
     private Stage primaryStage;
-
-
-
 
     public void init(Stage aPrimaryStage)
     {

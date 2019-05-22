@@ -85,7 +85,6 @@ public class BorrowingDto implements DtoWithCa {
 
     @Override
     public DtoCaValue getCaValue(DtoType aExpectedDto) {
-
         switch (aExpectedDto)
         {
             case Employee:

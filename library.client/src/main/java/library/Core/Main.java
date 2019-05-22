@@ -37,7 +37,9 @@ public class Main extends Application {
 		
 		LoginPanelController controller = loader.getController();
 		controller.init(primaryStage);
-		
+		Thread.setDefaultUncaughtExceptionHandler( (exThread,aException) -> {
+			System.out.println(aException.getMessage());
+		});
 		primaryStage.show();
 	}
 	

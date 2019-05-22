@@ -62,7 +62,7 @@ public class MenuController {
             newWindowStage.setScene(new Scene(root));
             newWindowStage.showAndWait();
         }
-        catch (IOException aEx)
+        catch (IOException | RuntimeException aEx  )
         {
             logger.debug(aEx);
         }

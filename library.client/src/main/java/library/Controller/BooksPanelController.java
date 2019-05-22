@@ -29,10 +29,15 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 		titleCol.setCellValueFactory(value -> value.getValue().getTitle());
 		titleCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		titleCol.setOnEditCommit( event ->{
-			event.getTableView().getItems()
-			.get(event.getTablePosition().getRow())
-			.setTitle(event.getNewValue());
-		});
+				event.getTableView().getItems()
+						.get(event.getTablePosition().getRow())
+						.setTitle(event.getNewValue());
+			});
+
+
+
+
+
 		columns.add(titleCol);
 		
 		TableColumn<BookDto,String> authorCol = new TableColumn("Autor");

@@ -4,9 +4,9 @@ import javafx.geometry.Pos;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
-public class Validator {
+public class DtoValidator {
 
-    public void errorMessage(String text){
+    public static void errorMessage(String text){
         Notifications error = Notifications.create()
                 .title("Błąd!")
                 .position(Pos.CENTER)
@@ -14,4 +14,7 @@ public class Validator {
                 .text(text);
         error.showError();
     }
+
+
+
 }

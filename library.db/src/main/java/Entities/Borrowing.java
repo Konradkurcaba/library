@@ -1,7 +1,6 @@
 package Entities;
 
-import java.sql.Date;
-import java.sql.SQLData;
+
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -11,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
