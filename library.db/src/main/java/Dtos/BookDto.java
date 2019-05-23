@@ -2,6 +2,7 @@ package Dtos;
 
 import java.time.Year;
 
+import Validator.DtoValidator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import Brokers.CategoryBroker;
@@ -19,6 +20,8 @@ public class BookDto {
     private StringProperty year;
     private StringProperty category;
     private StringProperty quantity;
+
+    private DtoValidator dtoValidator = new DtoValidator();
 
     public BookDto(Book book) {
         super();
@@ -54,7 +57,7 @@ public class BookDto {
     }
 
     public void setTitle(String aTitle) {
-        DtoValidator.checkText(aTitle);
+        dtoValidator.checkNull(aTitle);
         title.setValue(aTitle);
     }
 
@@ -63,6 +66,7 @@ public class BookDto {
     }
 
     public void setIsbn(String aIsbn) {
+        dtoValidator.checkISBN(aIsbn);
         isbn.setValue(aIsbn);
     }
 
@@ -80,6 +84,7 @@ public class BookDto {
     }
 
     public void setAuthor(String aAuthor) {
+        dtoValidator.checkSmallFirstLetters(aAuthor);
         author.setValue(aAuthor);
     }
 
@@ -88,7 +93,7 @@ public class BookDto {
     }
 
     public void setYearOfPublication(String aYearOfPublication) throws NumberFormatException {
-
+        dtoValidator.checkNumber(aYearOfPublication);
         year.setValue(aYearOfPublication);
     }
 
@@ -97,6 +102,7 @@ public class BookDto {
     }
 
     public void setQuantity(String aQuantity) throws NumberFormatException {
+        dtoValidator.checkNumber(aQuantity);
         quantity.setValue(aQuantity);
     }
 

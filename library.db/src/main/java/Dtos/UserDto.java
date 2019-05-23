@@ -1,6 +1,7 @@
 package Dtos;
 
 import Entities.User;
+import Validator.DtoValidator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -17,6 +18,8 @@ public class UserDto implements DtoCaValue {
     private StringProperty houseNumber;
     private StringProperty phoneNumber;
     private StringProperty email;
+
+    private DtoValidator dtoValidator = new DtoValidator();
 
     public UserDto(User user) {
         this.user = user;
@@ -51,6 +54,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setFirstName(String firstName) {
+        dtoValidator.checkSmallFirstLetters(firstName);
         this.firstName.set(firstName);
     }
 
@@ -59,6 +63,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setLastName(String lastName) {
+        dtoValidator.checkSmallFirstLetters(lastName);
         this.lastName.set(lastName);
     }
 
@@ -67,6 +72,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setZipCode(String zipCode) {
+        dtoValidator.checkZipCode(zipCode);
         this.zipCode.set(zipCode);
     }
 
@@ -75,6 +81,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setCity(String city) {
+        dtoValidator.checkSmallFirstLetters(city);
         this.city.set(city);
     }
 
@@ -83,6 +90,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setStreet(String street) {
+        dtoValidator.checkNull(street);
         this.street.set(street);
     }
 
@@ -91,6 +99,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setHouseNumber(String houseNumber) {
+        dtoValidator.checkNull(houseNumber);
         this.houseNumber.set(houseNumber);
     }
 
@@ -99,6 +108,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        dtoValidator.checkTelephone(phoneNumber);
         this.phoneNumber.set(phoneNumber);
     }
 
@@ -107,6 +117,7 @@ public class UserDto implements DtoCaValue {
     }
 
     public void setEmail(String email) {
+        dtoValidator.checkEmail(email);
         this.email.set(email);
     }
 
