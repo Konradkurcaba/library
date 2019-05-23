@@ -1,8 +1,5 @@
 package Validator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class DtoValidator {
 
     public void checkNull(String text) throws RuntimeException{
