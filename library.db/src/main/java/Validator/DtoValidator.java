@@ -9,7 +9,7 @@ public class DtoValidator {
     }
     public void checkSmallFirstLetters(String text) throws RuntimeException{
         checkNull(text);
-        String pattern = "([A-Z]{1}[a-z]*)+";
+        String pattern = "([A-Z][a-z]*)+";
         if(!text.matches(pattern)){
             throw new RuntimeException("Wprowadzone dane zaczynają się z małej litery! Popraw i spróbuj ponownie!");
         }
@@ -49,7 +49,7 @@ public class DtoValidator {
 
     public void checkTelephone(String telephone){
         checkNull(telephone);
-        String pattern = "[1-9]{1}[0-9]{8}";
+        String pattern = "[1-9][0-9]{8}";
         if(!telephone.matches(pattern)){
             throw new RuntimeException("Niepoprawny format numeru telefonu! Popraw i spróbuj ponownie!");
         }
