@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Brokers.BrokerIf;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 
@@ -27,9 +25,9 @@ public abstract class AbstractWindowTableController<T> {
 		toDeleteDtos = new ArrayList<>();
 	}
 	@FXML
-	private Label windowLabel;
+	protected TableView<T> tableView;
 	@FXML
-	private TableView<T> tableView;
+	private Label windowLabel;
 	@FXML
 	private Button onEditButton;
 	@FXML
@@ -46,19 +44,13 @@ public abstract class AbstractWindowTableController<T> {
 	public void init()
 	{
 		windowLabel.setText(windowTitle);
-		configureTableView();
 		initButtons();
-	}
-	
-	protected void configureTableView()
-	{
-		tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		tableView.getColumns().clear();
 		tableView.getColumns().addAll(configureTableViewColumns());
-		List<T> items = broker.getAll();
-		tableView.getItems().addAll(items);
+		tableView.getItems().addAll(broker.getAll());
 	}
-	
+
+
+
 	protected void initButtons()
 	{
 		offEditMode();
@@ -85,6 +77,7 @@ public abstract class AbstractWindowTableController<T> {
 			T newDto = broker.create();
 			tableView.getItems().add(newDto);
 			tableView.getSelectionModel().selectLast();
+			tableView.refresh();
 		});
 
 		resetButton.setOnAction(clicked ->{

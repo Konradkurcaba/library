@@ -24,7 +24,7 @@ public class LibraryContentAssist {
         TableColumn<S,T> tableColumn = new TableColumn<>(aColumnName);
         ObservableList<T> values = FXCollections.observableArrayList(aValuesBroker.getAll());
 
-        tableColumn.setCellFactory(ComboBoxTableCell.forTableColumn(new StringConverter<T>() {
+        tableColumn.setCellFactory(ComboBoxTableCellHijack.forTableColumn(new StringConverter<T>() {
 
             @Override
             public String toString(T object) {
@@ -42,6 +42,9 @@ public class LibraryContentAssist {
                 return equalsValue.orElse(null);
 
             }
+
+
+
         },values));
 
 

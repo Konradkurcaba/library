@@ -34,10 +34,6 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 						.setTitle(event.getNewValue());
 			});
 
-
-
-
-
 		columns.add(titleCol);
 		
 		TableColumn<BookDto,String> authorCol = new TableColumn("Autor");

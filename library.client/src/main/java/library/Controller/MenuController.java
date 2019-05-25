@@ -65,6 +65,7 @@ public class MenuController {
             Stage newWindowStage = new Stage();
             newWindowStage.initModality(Modality.WINDOW_MODAL);
             newWindowStage.initOwner(primaryStage);
+
             loader.setController(aController);
             Parent root = loader.load();
             aController.init();
