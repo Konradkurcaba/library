@@ -4,6 +4,7 @@ import Entities.Book;
 import Entities.Borrowing;
 import Entities.Employee;
 import Entities.User;
+import Validator.DtoValidator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -20,6 +21,8 @@ public class BorrowingDto implements DtoWithCa {
     private EmployeeDto employeeToDisplay;
     private UserDto userToDisplay;
     boolean isPersisted;
+
+    private DtoValidator dtoValidator = new DtoValidator();
 
 	public BorrowingDto(Borrowing borrowing) {
 		super();
@@ -49,8 +52,7 @@ public class BorrowingDto implements DtoWithCa {
         isPersisted = true;
     }
 
-    public StringProperty startDateProperty() {
-        return startDate;
+    public StringProperty startDateProperty() { return startDate;
     }
 
     public StringProperty endDateProperty() {
@@ -58,11 +60,13 @@ public class BorrowingDto implements DtoWithCa {
     }
 
     public void setStartDate(String startDate) {
+	    dtoValidator.checkDate(startDate);
         this.startDate.set(startDate);
     }
 
     public void setEndDate(String endDate) {
-        this.endDate.set(endDate);
+        dtoValidator.checkDate(endDate);
+	    this.endDate.set(endDate);
     }
 
     public Employee getEmployee() {

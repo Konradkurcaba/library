@@ -28,7 +28,7 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 		TableColumn<BookDto,String> titleCol = new TableColumn("Tytuł");
 		titleCol.setCellValueFactory(value -> value.getValue().getTitle());
 		titleCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		titleCol.setOnEditCommit( event ->{
+		titleCol.setOnEditCommit( event -> {
 				event.getTableView().getItems()
 						.get(event.getTablePosition().getRow())
 						.setTitle(event.getNewValue());
@@ -39,54 +39,46 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 		TableColumn<BookDto,String> authorCol = new TableColumn("Autor");
 		authorCol.setCellValueFactory(value -> value.getValue().getAuthor());
 		authorCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		authorCol.setOnEditCommit( event ->{
-			event.getTableView().getItems()
-			.get(event.getTablePosition().getRow())
-			.setAuthor(event.getNewValue());
-		});
-		
+		authorCol.setOnEditCommit( event ->
+				event.getTableView().getItems()
+				.get(event.getTablePosition().getRow())
+				.setAuthor(event.getNewValue()));
 		columns.add(authorCol);
 		
 		TableColumn<BookDto,String> isbnCol = new TableColumn("ISBN");
 		isbnCol.setCellValueFactory(value -> value.getValue().getIsbn());
 		isbnCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		isbnCol.setOnEditCommit( event ->{
-			event.getTableView().getItems()
-			.get(event.getTablePosition().getRow())
-			.setIsbn(event.getNewValue());
-		});
+		isbnCol.setOnEditCommit( event ->
+				event.getTableView().getItems()
+				.get(event.getTablePosition().getRow())
+				.setIsbn(event.getNewValue()));
 		columns.add(isbnCol);
 		
 		TableColumn<BookDto,String> quantityCol = new TableColumn("Ilość");
 		quantityCol.setCellValueFactory(value -> value.getValue().getQuantity());
 		quantityCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		quantityCol.setOnEditCommit( event ->{
-			event.getTableView().getItems()
-			.get(event.getTablePosition().getRow())
-			.setQuantity(event.getNewValue());
-		});
+		quantityCol.setOnEditCommit( event ->
+				event.getTableView().getItems()
+				.get(event.getTablePosition().getRow())
+				.setQuantity(event.getNewValue()));
 		columns.add(quantityCol);
 		
 		TableColumn<BookDto,String> yearCol = new TableColumn("Rok wydania");
 		yearCol.setCellValueFactory(value -> value.getValue().getYearOfPublication());
 		yearCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		yearCol.setOnEditCommit( event ->{
-			event.getTableView().getItems()
-			.get(event.getTablePosition().getRow())
-			.setYearOfPublication(event.getNewValue());
-		});
-		
+		yearCol.setOnEditCommit( event ->
+				event.getTableView().getItems()
+				.get(event.getTablePosition().getRow())
+				.setYearOfPublication(event.getNewValue()));
 		columns.add(yearCol);
 		
 		TableColumn<BookDto,String> categoryCol = new TableColumn("Gatunek");
 		categoryCol.setCellValueFactory(value -> value.getValue().getCategory());
 		categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		categoryCol.setOnEditCommit( event ->{
-			event.getTableView().getItems()
-			.get(event.getTablePosition().getRow())
-			.setCategory(event.getNewValue());
-		});
-		
+		categoryCol.setOnEditCommit( event ->
+				event.getTableView().getItems()
+				.get(event.getTablePosition().getRow())
+				.setCategory(event.getNewValue()));
 		columns.add(categoryCol);
 
 		return columns;

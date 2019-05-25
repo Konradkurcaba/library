@@ -40,7 +40,7 @@
             <Insets bottom="20.0" top="20.0" />
          </padding>
       </Label>
-      <Button fx:id="onEditButton" mnemonicParsing="false" text="On" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Button fx:id="onEditButton" mnemonicParsing="false" text="Włącz" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="60.0" />
          </GridPane.margin></Button>
@@ -54,7 +54,7 @@
             <Insets left="240.0" />
          </GridPane.margin>
       </Button>
-      <Label text="Edit Mode:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label text="Tryb edycji:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Button fx:id="newButton" mnemonicParsing="false" prefWidth="136.0" text="Dodaj" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="320.0" />

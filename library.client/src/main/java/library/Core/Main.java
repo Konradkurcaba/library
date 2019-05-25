@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import library.Controller.LoginPanelController;
 import library.Login.LoginHelper;
+import library.Validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -23,12 +24,13 @@ public class Main extends Application {
 	
 	public static void main(String...aArgs)
 	{
-		dirtyCode();
+		//dirtyCode();
 		launch();
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		Validator validator = new Validator();
 		FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
 				.getResource("FXML/login.fxml"));
 		
@@ -37,9 +39,8 @@ public class Main extends Application {
 		
 		LoginPanelController controller = loader.getController();
 		controller.init(primaryStage);
-		Thread.setDefaultUncaughtExceptionHandler( (exThread,aException) -> {
-			System.out.println(aException.getMessage());
-		});
+		Thread.setDefaultUncaughtExceptionHandler( (exThread,aException) ->
+				validator.errorMessage(aException.getMessage()));
 		primaryStage.show();
 	}
 	
@@ -48,7 +49,7 @@ public class Main extends Application {
 	{
 
 		LoginData loginData = new LoginData();
-		loginData.setAccountName("root");
+		loginData.setAccountName("admin");
 		LoginHelper loginHelper = new LoginHelper();
 		byte[] hash = loginHelper.createPasswordHash("password");
 		loginData.setPassword(hash);

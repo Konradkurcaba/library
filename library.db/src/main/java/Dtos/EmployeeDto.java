@@ -1,5 +1,6 @@
 package Dtos;
 
+import Validator.DtoValidator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import Entities.Employee;
@@ -15,6 +16,8 @@ public class EmployeeDto implements DtoCaValue {
     StringProperty city;
     StringProperty street;
     StringProperty houseNumber;
+
+    private DtoValidator dtoValidator = new DtoValidator();
 
 
     public EmployeeDto(Employee employee) {
@@ -78,26 +81,32 @@ public class EmployeeDto implements DtoCaValue {
     }
 
     public void setFirstName(String firstName) {
+        dtoValidator.checkSmallFirstLetters(firstName);
         this.firstName.set(firstName);
     }
 
     public void setLastName(String lastName) {
+        dtoValidator.checkSmallFirstLetters(lastName);
         this.lastName.set(lastName);
     }
 
     public void setZipCode(String zipCode) {
+        dtoValidator.checkZipCode(zipCode);
         this.zipCode.set(zipCode);
     }
 
     public void setCity(String city) {
+        dtoValidator.checkSmallFirstLetters(city);
         this.city.set(city);
     }
 
     public void setStreet(String street) {
+        dtoValidator.checkNull(street);
         this.street.set(street);
     }
 
     public void setHouseNumber(String houseNumber) {
+        dtoValidator.checkNumber(houseNumber);
         this.houseNumber.set(houseNumber);
     }
 

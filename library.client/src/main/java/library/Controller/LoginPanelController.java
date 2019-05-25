@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import library.Login.LoginHelper;
-import library.Validation.DtoValidator;
+import library.Validation.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +23,8 @@ public class LoginPanelController {
     private final static String HASH_ALGORITHM = "SHA-256";
     public final static String LOGIN_PANEL_FXML_PATH = "FXML/login.fxml";
 
-    private DtoValidator validator = new DtoValidator();
+
+    private Validator validator = new Validator();
 
     @FXML
     private TextField loginField;
