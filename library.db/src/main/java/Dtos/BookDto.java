@@ -8,7 +8,7 @@ import Brokers.CategoryBroker;
 import Entities.Book;
 
 
-public class BookDto {
+public class BookDto implements DtoCaValue,DtoWithCa {
 
     private Book book;
     private boolean isPersisted;
@@ -140,4 +140,18 @@ public class BookDto {
         book.setCategory(catDto.getCategory());
     }
 
+    @Override
+    public String getCaName() {
+        return getTitle().getValue() + " " + getIsbn().getValue();
+    }
+
+    @Override
+    public DtoCaValue getCaValue(DtoType aExpectedDto) {
+        return this;
+    }
+
+    @Override
+    public void setCaValue(DtoCaValue aNewDtoValue) {
+
+    }
 }

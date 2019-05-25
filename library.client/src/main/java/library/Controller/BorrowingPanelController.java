@@ -80,12 +80,12 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
     {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem details = new MenuItem("Szczegóły");
-        details.setOnAction(event -> {});
+        details.setOnAction(event -> openDetailsWindow(tableView.getSelectionModel().getSelectedItem()));
         contextMenu.getItems().add(details);
         tableView.setContextMenu(contextMenu);
     }
 
-    private void openDetailsWindow()
+    private void openDetailsWindow(BorrowingDto aSource)
     {
         try
         {
@@ -93,7 +93,7 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
                     .getResource(AbstractWindowTableController.FXML_PATH));
             Stage newWindowStage = new Stage();
             newWindowStage.initModality(Modality.WINDOW_MODAL);
-            BooksPanelController controller = new BooksPanelController();
+            BooksDetailController controller = new BooksDetailController("Szczegóły",aSource);
             loader.setController(controller);
             Parent root = loader.load();
             controller.init();

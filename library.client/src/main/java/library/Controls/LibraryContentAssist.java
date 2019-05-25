@@ -9,10 +9,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import javassist.NotFoundException;
 
 import java.util.Optional;
 
@@ -42,11 +40,7 @@ public class LibraryContentAssist {
                 return equalsValue.orElse(null);
 
             }
-
-
-
         },values));
-
 
         tableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>>() {
             @Override
