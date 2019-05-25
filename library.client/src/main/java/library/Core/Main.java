@@ -1,9 +1,6 @@
 package library.Core;
 
-import Entities.Borrowing;
-import Entities.Employee;
-import Entities.LoginData;
-import Entities.User;
+import Entities.*;
 import EntityManager.PersistenceManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +51,11 @@ public class Main extends Application {
 		byte[] hash = loginHelper.createPasswordHash("password");
 		loginData.setPassword(hash);
 
+		Category category = new Category("Dla dzieci");
+		Category category1 = new Category("Fantastyka");
+		Category category2 = new Category("Kulinarne");
+
+
 
 		Employee employee = new Employee();
 
@@ -95,6 +97,9 @@ public class Main extends Application {
 		entityManager.persist(user2);
 		entityManager.persist(borrowing);
 		entityManager.persist(loginData);
+		entityManager.persist(category);
+		entityManager.persist(category1);
+		entityManager.persist(category2);
 		entityManager.getTransaction().commit();
 
 

@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Brokers.BookBroker;
+import Brokers.CategoryBroker;
 import Dtos.BookDto;
+import Dtos.CategoryDto;
+import Dtos.DtoType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
+import library.Controls.LibraryContentAssist;
 
 
 public class BooksPanelController extends AbstractWindowTableController<BookDto>{
@@ -71,16 +75,12 @@ public class BooksPanelController extends AbstractWindowTableController<BookDto>
 				.get(event.getTablePosition().getRow())
 				.setYearOfPublication(event.getNewValue()));
 		columns.add(yearCol);
-		
-		TableColumn<BookDto,String> categoryCol = new TableColumn("Gatunek");
-		categoryCol.setCellValueFactory(value -> value.getValue().getCategory());
-		categoryCol.setCellFactory(TextFieldTableCell.forTableColumn());
-		categoryCol.setOnEditCommit( event ->
-				event.getTableView().getItems()
-				.get(event.getTablePosition().getRow())
-				.setCategory(event.getNewValue()));
-		columns.add(categoryCol);
 
+		TableColumn categoryColumn =
+		LibraryContentAssist.getCaColumn("Kategoria",new CategoryBroker()
+				, DtoType.Category,false);
+
+		columns.add(categoryColumn);
 		return columns;
 	
 	}

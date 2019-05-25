@@ -23,7 +23,7 @@ public class BooksDetailController extends AbstractWindowTableController{
         List<TableColumn<BookRowFakeDto,BookDto>> columns = new ArrayList();
 
         TableColumn<BookRowFakeDto, BookDto> bookColumn =
-                LibraryContentAssist.getCaColumn("Pracownik",new BookBroker(), DtoType.Book);
+                LibraryContentAssist.getCaColumn("Książka",new BookBroker(), DtoType.Book,true);
         columns.add(bookColumn);
 
         return columns;

@@ -34,33 +34,8 @@ public class CategoryBroker implements BrokerIf<CategoryDto>{
 		return wrapIntoDto(tQuery.getResultList());
 
 	}
-	
-	public CategoryDto getCategory(String aCategoryName)
-	{
-		Optional<Category> category  = entityManager.createQuery(GET_CATEGORY)
-		.setParameter("catName", aCategoryName)
-		.getResultStream()
-		.findAny();
-		
-		if(category.isPresent())
-		{
-			return new CategoryDto(category.get());
-		}else
-		{
-			return new CategoryDto(createNewCategory(aCategoryName));
-		}
-	}
-	
-	
-	private Category createNewCategory(String aName)
-	{
-		Category category = new Category(aName);
-		entityManager.getTransaction().begin();
-		entityManager.persist(category);
-		entityManager.getTransaction().commit();
-		
-		return category;
-	}
+
+
 
 	private List<CategoryDto> wrapIntoDto(List<Category> aCategories) {
 		return aCategories.stream().map(CategoryDto::new).collect(Collectors.toList());

@@ -3,7 +3,6 @@ package Dtos;
 import java.time.Year;
 
 import Validator.DtoValidator;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import Brokers.CategoryBroker;
@@ -15,12 +14,14 @@ public class BookDto implements DtoCaValue,DtoWithCa {
     private Book book;
     private boolean isPersisted;
 
+    private CategoryDto categoryToDisplay;
+
     private StringProperty title;
     private StringProperty isbn;
     private StringProperty author;
     private StringProperty year;
-    private StringProperty category;
     private StringProperty quantity;
+
 
 
     private DtoValidator dtoValidator = new DtoValidator();
@@ -33,7 +34,7 @@ public class BookDto implements DtoCaValue,DtoWithCa {
         isbn = new SimpleStringProperty(book.getIsbn());
         author = new SimpleStringProperty(book.getAuthor());
         year = new SimpleStringProperty(book.getYearOfPublication().toString());
-        category = new SimpleStringProperty(book.getCategory().toString());
+        categoryToDisplay = new CategoryDto(book.getCategory());
         quantity = new SimpleStringProperty(String.valueOf(book.getQuantity()));
 
         isPersisted = true;
@@ -46,7 +47,7 @@ public class BookDto implements DtoCaValue,DtoWithCa {
         isbn = new SimpleStringProperty("");
         author = new SimpleStringProperty("");
         year = new SimpleStringProperty("");
-        category = new SimpleStringProperty("");
+        categoryToDisplay = new CategoryDto();
         quantity = new SimpleStringProperty("");
     }
 
@@ -72,13 +73,13 @@ public class BookDto implements DtoCaValue,DtoWithCa {
         isbn.setValue(aIsbn);
     }
 
-    public StringProperty getCategory() {
-        return category;
+    public CategoryDto getCategory() {
+        return categoryToDisplay;
     }
 
-    public void setCategory(String aCategory) {
+    public void setCategory(CategoryDto aCategory) {
 
-        category.setValue(aCategory);
+        categoryToDisplay = aCategory;
     }
 
     public StringProperty getAuthor() {
@@ -145,8 +146,8 @@ public class BookDto implements DtoCaValue,DtoWithCa {
         book.setQuantity(convertedQuantity);
 
         CategoryBroker categoryBroker = new CategoryBroker();
-        CategoryDto catDto = categoryBroker.getCategory(category.getValue());
-        book.setCategory(catDto.getCategory());
+
+        book.setCategory(categoryToDisplay.getCategory());
     }
 
     @Override
@@ -155,12 +156,16 @@ public class BookDto implements DtoCaValue,DtoWithCa {
     }
 
     @Override
-    public DtoCaValue getCaValue(DtoType aExpectedDto) {
-        return this;
+    public DtoCaValue getCaValue(DtoType aExpectedDto)
+    {
+        if(aExpectedDto.equals(DtoType.Category)) {
+            return categoryToDisplay;
+        }
+        else throw new IllegalArgumentException("illegal category");
     }
 
     @Override
     public void setCaValue(DtoCaValue aNewDtoValue) {
-
+        categoryToDisplay = (CategoryDto) aNewDtoValue;
     }
 }

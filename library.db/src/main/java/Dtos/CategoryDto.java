@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import Entities.Category;
 
-public class CategoryDto {
+public class CategoryDto implements DtoCaValue {
 
 	
 	private Category category;
@@ -19,8 +19,13 @@ public class CategoryDto {
 		
 		id = new SimpleStringProperty(String.valueOf(category.getCategoryId()));
 		categoryName = new SimpleStringProperty(category.getCategoryName());
-		
 	}
+
+	public CategoryDto()
+	{
+		categoryName = new SimpleStringProperty("");
+	}
+
 	public StringProperty getId() {
 		return id;
 	}
@@ -32,7 +37,9 @@ public class CategoryDto {
 		return category;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName.set(categoryName);
+
+	@Override
+	public String getCaName() {
+		return getCategoryName().getValue();
 	}
 }

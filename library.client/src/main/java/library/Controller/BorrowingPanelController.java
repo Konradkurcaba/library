@@ -45,13 +45,11 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
         List<TableColumn> columns = new ArrayList<>();
 
         TableColumn<BorrowingDto, EmployeeDto> employeeColumn =
-                LibraryContentAssist.getCaColumn("Pracownik",new EmployeeBroker(), DtoType.Employee);
+                LibraryContentAssist.getCaColumn("Pracownik",new EmployeeBroker(), DtoType.Employee,true);
         columns.add(employeeColumn);
 
-
-
         TableColumn<BorrowingDto, UserDto> userColumn =
-                LibraryContentAssist.getCaColumn("Klient",new UserBroker(),DtoType.User);
+                LibraryContentAssist.getCaColumn("Klient",new UserBroker(),DtoType.User,true);
         columns.add(userColumn);
 
         TableColumn<BorrowingDto,String> startDateCol = new TableColumn("Data wypożyczenia");

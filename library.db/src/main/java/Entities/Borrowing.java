@@ -2,6 +2,7 @@ package Entities;
 
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -30,7 +31,7 @@ public class Borrowing {
 	
 	@ManyToMany()
 	@JoinColumn(name = "book_id")
-	Set<Book> books;
+	Set<Book> books = new HashSet<>();
 
 	@Column(name = "start_borrow_date")
 	private LocalDate startBorrowDate;

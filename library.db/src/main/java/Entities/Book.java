@@ -61,8 +61,8 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getCategory() {
-        return category.getCategoryName();
+    public Category getCategory() {
+        return category;
     }
 
     public void setCategory(Category aCategory) {

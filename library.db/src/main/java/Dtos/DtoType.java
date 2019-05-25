@@ -1,5 +1,5 @@
 package Dtos;
 
 public enum DtoType {
-    Employee,User,Book
+    Employee,User,Book,Category
 }

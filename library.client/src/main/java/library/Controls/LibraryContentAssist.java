@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
@@ -17,30 +18,54 @@ import java.util.Optional;
 public class LibraryContentAssist {
 
     public static <S extends DtoWithCa,T extends DtoCaValue> TableColumn<S,T>
-    getCaColumn(String aColumnName, BrokerIf<T> aValuesBroker, DtoType aColumnContent)
+    getCaColumn(String aColumnName, BrokerIf<T> aValuesBroker, DtoType aColumnContent,boolean withFilter)
     {
         TableColumn<S,T> tableColumn = new TableColumn<>(aColumnName);
         ObservableList<T> values = FXCollections.observableArrayList(aValuesBroker.getAll());
 
-        tableColumn.setCellFactory(ComboBoxTableCellHijack.forTableColumn(new StringConverter<T>() {
+        if(withFilter) {
+            tableColumn.setCellFactory(ComboBoxTableCellHijack.forTableColumn(new StringConverter<T>() {
 
-            @Override
-            public String toString(T object) {
-                return object.getCaName();
-            }
+                @Override
+                public String toString(T object) {
+                    return object.getCaName();
+                }
 
-            @Override
-            public T fromString(String string) {
-                Optional<T> equalsValue = values.stream()
-                        .filter(value ->{
-                            if(value.getCaName().equals(string)) return true;
-                            else return false;
-                        })
-                        .findAny();
-                return equalsValue.orElse(null);
+                @Override
+                public T fromString(String string) {
+                    Optional<T> equalsValue = values.stream()
+                            .filter(value -> {
+                                if (value.getCaName().equals(string)) return true;
+                                else return false;
+                            })
+                            .findAny();
+                    return equalsValue.orElse(null);
 
-            }
-        },values));
+                }
+            }, values));
+        }
+        else
+        {
+            tableColumn.setCellFactory(ComboBoxTableCell.forTableColumn(new StringConverter<T>() {
+
+                @Override
+                public String toString(T object) {
+                    return object.getCaName();
+                }
+
+                @Override
+                public T fromString(String string) {
+                    Optional<T> equalsValue = values.stream()
+                            .filter(value ->{
+                                if(value.getCaName().equals(string)) return true;
+                                else return false;
+                            })
+                            .findAny();
+                    return equalsValue.orElse(null);
+
+                }
+            },values));
+        }
 
         tableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>>() {
             @Override
