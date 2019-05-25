@@ -15,6 +15,8 @@ import javafx.scene.control.TableView;
 
 public abstract class AbstractWindowTableController<T> {
 
+	public final static String FXML_PATH = "FXML/abstractTableWindow.fxml";
+
 	private String windowTitle;
 	private List<T> toDeleteDtos;
 	protected BrokerIf<T> broker;
@@ -87,8 +89,10 @@ public abstract class AbstractWindowTableController<T> {
 
 		resetButton.setOnAction(clicked ->{
 			offEditMode();
-			tableView.getItems().addAll(toDeleteDtos);
 			toDeleteDtos.clear();
+			tableView.getItems().clear();
+			List<T> newDtos = broker.getAll();
+			tableView.getItems().addAll(newDtos);
 			tableView.refresh();
 		});
 		

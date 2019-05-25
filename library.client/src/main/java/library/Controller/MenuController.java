@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import library.Login.LoginHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,16 +17,20 @@ public class MenuController {
 
     private final static Logger logger = LogManager.getLogger();
 
+    public final static String MENU_FXML_PATH = "FXML/menu.fxml";
+
     @FXML
     private Button booksButton;
     @FXML
     private Button borrowButton;
     @FXML
     private Button userButton;
+    @FXML
+    private Button logOutButton;
 
     private Stage primaryStage;
 
-    private final static String FXML_PATH = "FXML/books.fxml";
+
 
     public void init(Stage aPrimaryStage)
     {
@@ -45,26 +50,52 @@ public class MenuController {
             openNewWindow(controller);
         });
 
+        logOutButton.setOnAction(event ->{
+            logOut();
+        });
+
     }
 
     private void openNewWindow(AbstractWindowTableController aController)
     {
         try
         {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
+                    .getResource(AbstractWindowTableController.FXML_PATH));
             Stage newWindowStage = new Stage();
             newWindowStage.initModality(Modality.WINDOW_MODAL);
             newWindowStage.initOwner(primaryStage);
-            FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
-                    .getResource(FXML_PATH));
             loader.setController(aController);
             Parent root = loader.load();
             aController.init();
             newWindowStage.setScene(new Scene(root));
             newWindowStage.showAndWait();
         }
-        catch (IOException | RuntimeException aEx  )
+        catch (IOException aEx )
         {
             logger.debug(aEx);
         }
     }
+
+    private void logOut()
+    {
+        try
+        {
+            LoginHelper.logout();
+            FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
+                    .getResource(LoginPanelController.LOGIN_PANEL_FXML_PATH));
+
+            Parent root = loader.load();
+            LoginPanelController controller = loader.getController();
+            controller.init(primaryStage);
+            primaryStage.setScene(new Scene(root));
+        }
+        catch (IOException aEx )
+        {
+            logger.debug(aEx);
+        }
+    }
+
+
+
 }

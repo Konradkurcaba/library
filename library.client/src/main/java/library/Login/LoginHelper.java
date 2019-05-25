@@ -19,7 +19,7 @@ public class LoginHelper {
     private static LoginDataDto loginDataDto;
 
 
-    public boolean tryToLogin(String aLogin, byte[] aPassword) {
+    public static boolean tryToLogin(String aLogin, byte[] aPassword) {
         try {
             LoginDataBroker dataBroker = new LoginDataBroker();
             loginDataDto = dataBroker.checkLoginData(aLogin, aPassword);
@@ -36,7 +36,10 @@ public class LoginHelper {
 
     public AccountType getCurrentAccountType()
     {
-        return loginDataDto.getType();
+        if(loginDataDto == null) return AccountType.notLogged;
+        else {
+            return loginDataDto.getType();
+        }
     }
 
     public byte[] createPasswordHash(String aPassword)
@@ -55,6 +58,11 @@ public class LoginHelper {
             logger.debug("Hash algorithm : " + HASH_ALGORITHM + " doesn't exist");
         }
         return passwordHash;
+    }
+
+    public static void logout()
+    {
+        loginDataDto = null;
     }
 
 }

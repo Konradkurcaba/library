@@ -34,7 +34,7 @@
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="108.0" layoutY="383.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Wyloguj">
+      <Button fx:id="logOutButton" layoutX="108.0" layoutY="383.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Wyloguj">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>

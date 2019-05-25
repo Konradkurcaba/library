@@ -21,7 +21,7 @@ public class LoginPanelController {
 
     private final static Logger logger = LogManager.getLogger(LoginPanelController.class);
     private final static String HASH_ALGORITHM = "SHA-256";
-    private final static String MENU_FXML_PATH = "FXML/menu.fxml";
+    public final static String LOGIN_PANEL_FXML_PATH = "FXML/login.fxml";
 
     private DtoValidator validator = new DtoValidator();
 
@@ -76,7 +76,7 @@ public class LoginPanelController {
         try {
 
             FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
-                    .getResource(MENU_FXML_PATH));
+                    .getResource(MenuController.MENU_FXML_PATH));
 
             Parent root = loader.load();
             primaryStage.setScene(new Scene(root));

@@ -54,7 +54,6 @@ public class BookDto {
     }
 
     public void setTitle(String aTitle) {
-        DtoValidator.checkText(aTitle);
         title.setValue(aTitle);
     }
 
