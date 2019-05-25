@@ -38,6 +38,17 @@ public class Borrowing {
 	@Column(name = "end_borrow_date")
 	private LocalDate endBorrowDate;
 
+	@Column(name = "is_returned")
+	private Boolean isReturned;
+
+
+	public Boolean isReturned() {
+		return isReturned;
+	}
+
+	public void setReturned(Boolean returned) {
+		isReturned = returned;
+	}
 
 	public long getBorrowingId() {
 		return borrowingId;

@@ -57,6 +57,9 @@ public class BookBroker implements BrokerIf<BookDto> {
 	public void delete(List<BookDto> aBooks) {
 		aBooks.stream()
 		.map(BookDto::getBook)
+		.filter(book ->{if (book != null)  return true;
+		else return false;
+		})
 		.forEach(entityManager::remove);
 	}
 	

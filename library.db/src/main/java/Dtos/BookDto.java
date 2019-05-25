@@ -3,6 +3,7 @@ package Dtos;
 import java.time.Year;
 
 import Validator.DtoValidator;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import Brokers.CategoryBroker;
@@ -20,6 +21,7 @@ public class BookDto implements DtoCaValue,DtoWithCa {
     private StringProperty year;
     private StringProperty category;
     private StringProperty quantity;
+
 
     private DtoValidator dtoValidator = new DtoValidator();
 

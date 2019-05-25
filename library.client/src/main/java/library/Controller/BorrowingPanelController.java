@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -72,6 +73,12 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
                     .setEndDate(event.getNewValue());
         });
         columns.add(endDateCol);
+
+        TableColumn<BorrowingDto,Boolean> isReturned = new TableColumn<>("Oddane?");
+        isReturned.setCellValueFactory(borrowingDto -> {return borrowingDto.getValue().returnedProperty();});
+        isReturned.setCellFactory(tc -> new CheckBoxTableCell<>());
+
+        columns.add(isReturned);
 
         return columns;
     }

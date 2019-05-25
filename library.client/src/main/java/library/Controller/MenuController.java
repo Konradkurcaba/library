@@ -17,7 +17,7 @@ public class MenuController {
 
     private final static Logger logger = LogManager.getLogger();
 
-    public final static String MENU_FXML_PATH = "FXML/menu.fxml";
+    public final static String MENU_FXML_PATH = "FXML/client.fxml";
 
     @FXML
     private Button booksButton;

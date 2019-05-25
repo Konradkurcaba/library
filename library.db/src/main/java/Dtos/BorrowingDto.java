@@ -5,6 +5,8 @@ import Entities.Borrowing;
 import Entities.Employee;
 import Entities.User;
 import Validator.DtoValidator;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -17,10 +19,11 @@ public class BorrowingDto implements DtoWithCa {
 
 	private StringProperty startDate = new SimpleStringProperty("");
 	private StringProperty endDate = new SimpleStringProperty("");
+	private BooleanProperty returned = new SimpleBooleanProperty(false);
 
     private EmployeeDto employeeToDisplay;
     private UserDto userToDisplay;
-    boolean isPersisted;
+    private boolean isPersisted;
 
     private DtoValidator dtoValidator = new DtoValidator();
 
@@ -31,6 +34,7 @@ public class BorrowingDto implements DtoWithCa {
 		endDate.setValue(borrowing.getEndBorrowDate().toString());
 		userToDisplay = new UserDto(borrowing.getUser());
 		employeeToDisplay = new EmployeeDto(borrowing.getEmployee());
+		returned.setValue(borrowing.isReturned());
 		isPersisted = true;
 	}
 
@@ -57,6 +61,15 @@ public class BorrowingDto implements DtoWithCa {
 
     public StringProperty endDateProperty() {
         return endDate;
+    }
+
+
+    public BooleanProperty returnedProperty() {
+        return returned;
+    }
+
+    public void setReturned(boolean returned) {
+        this.returned.set(returned);
     }
 
     public void setStartDate(String startDate) {
@@ -127,6 +140,8 @@ public class BorrowingDto implements DtoWithCa {
         {
             borrowing.setUser(userToDisplay.getUser());
         }
+
+        borrowing.setReturned(returned.get());
 
     }
 }
