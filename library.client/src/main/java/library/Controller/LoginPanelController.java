@@ -8,12 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import library.Login.LoginHelper;
-import library.Validation.Validator;
+import library.Validation.Dialog;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,7 +26,7 @@ public class LoginPanelController {
     public final static String LOGIN_PANEL_FXML_PATH = "FXML/login.fxml";
 
 
-    private Validator validator = new Validator();
+    private Dialog validator = new Dialog();
 
     @FXML
     private TextField loginField;
@@ -34,6 +36,9 @@ public class LoginPanelController {
 
     @FXML
     private Button loginButton;
+
+    @FXML
+    private Button remindPasswordButton;
 
     private Stage primaryStage;
 
@@ -70,6 +75,30 @@ public class LoginPanelController {
                 validator.errorMessage("Brak loginu/hasła! Spróbuj ponownie.");
             }
         });
+
+        remindPasswordButton.setOnAction(event -> {
+            openRemindPanel();
+        });
+    }
+
+    private void openRemindPanel()
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
+                    .getResource(RemindPasswordController.REMIND_FXML));
+            Stage newWindowStage = new Stage();
+            newWindowStage.initModality(Modality.WINDOW_MODAL);
+            newWindowStage.initOwner(primaryStage);
+
+            Parent root = loader.load();
+            newWindowStage.setScene(new Scene(root));
+            newWindowStage.showAndWait();
+        }
+        catch (IOException aEx )
+        {
+            logger.debug(aEx);
+        }
     }
 
     private void openMainMenu(AccountType aAccountType)

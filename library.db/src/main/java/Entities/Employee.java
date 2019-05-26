@@ -1,9 +1,6 @@
 package Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -23,6 +20,11 @@ public class Employee {
 	private String street;
 	@Column(name = "house_number")
 	private String houseNumber;
+	private String email;
+	@OneToOne
+	private LoginData loginData;
+
+
 	public long getId() {
 		return employeeId;
 	}
@@ -65,6 +67,18 @@ public class Employee {
 	public void setHouseNumber(String houseNumber) {
 		this.houseNumber = houseNumber;
 	}
-	
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public LoginData getLoginData() {
+		return loginData;
+	}
+
+	public void setLoginData(LoginData loginData) {
+		this.loginData = loginData;
+	}
 }

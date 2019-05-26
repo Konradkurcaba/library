@@ -84,6 +84,17 @@ public class EmployeePanelController extends AbstractWindowTableController<Emplo
 
         columns.add(houseNumberCol);
 
+        TableColumn<EmployeeDto,String> email = new TableColumn("Email");
+        email.setCellValueFactory(value -> value.getValue().getEmail());
+        email.setCellFactory(TextFieldTableCell.forTableColumn());
+        email.setOnEditCommit( event ->{
+            event.getTableView().getItems()
+                    .get(event.getTablePosition().getRow())
+                    .setEmail(event.getNewValue());
+        });
+
+        columns.add(email);
+
         return columns;
     }
 }

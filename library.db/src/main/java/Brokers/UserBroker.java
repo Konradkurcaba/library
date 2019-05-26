@@ -1,6 +1,7 @@
 package Brokers;
 
 import Dtos.UserDto;
+import Entities.LoginData;
 import Entities.User;
 import EntityManager.PersistenceManager;
 
@@ -36,7 +37,11 @@ public class UserBroker implements BrokerIf<UserDto> {
                     User user = new User();
                     entityManager.persist(user);
                     userDto.setUser(user);
+                    LoginData loginData = new LoginData();
+                    entityManager.persist(loginData);
+                    user.setLoginData(loginData);
                 });
+
         aDtoList.stream()
                 .forEach(UserDto::commitChanges);
 

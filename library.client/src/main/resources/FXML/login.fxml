@@ -43,5 +43,6 @@
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
+      <Button fx:id="remindPasswordButton" layoutX="447.0" layoutY="307.0" mnemonicParsing="false" text="Nie pamiętam hasła" />
    </children>
 </Pane>

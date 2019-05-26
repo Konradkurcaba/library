@@ -4,7 +4,7 @@ import javafx.geometry.Pos;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
-public class Validator {
+public class Dialog {
 
     public void errorMessage(String text){
         if(!text.isEmpty()) {

@@ -1,5 +1,6 @@
 package Dtos;
 
+import Entities.AccountType;
 import Entities.User;
 import Validator.DtoValidator;
 import javafx.beans.property.SimpleStringProperty;
@@ -144,6 +145,9 @@ public class UserDto implements DtoCaValue {
         user.setStreet(street.getValue());
         user.setEmail(email.getValue());
         user.setZipCode(zipCode.getValue());
+        user.getLoginData().setType(AccountType.user);
+        user.getLoginData().setAccountName(email.getValue());
+        user.getLoginData().setEmail(email.getValue());
     }
 
     @Override

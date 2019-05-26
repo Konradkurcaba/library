@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import library.Controller.LoginPanelController;
 import library.Login.LoginHelper;
-import library.Validation.Validator;
+import library.Validation.Dialog;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -27,7 +27,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Validator validator = new Validator();
+		Dialog validator = new Dialog();
 		FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
 				.getResource("FXML/login.fxml"));
 		
@@ -91,11 +91,11 @@ public class Main extends Application {
 
 		entityManager.getTransaction().begin();
 
-		entityManager.persist(employee);
-		entityManager.persist(employee1);
-		entityManager.persist(user);
-		entityManager.persist(user2);
-		entityManager.persist(borrowing);
+//		entityManager.persist(employee);
+//		entityManager.persist(employee1);
+//		entityManager.persist(user);
+//		entityManager.persist(user2);
+//		entityManager.persist(borrowing);
 		entityManager.persist(loginData);
 		entityManager.persist(category);
 		entityManager.persist(category1);

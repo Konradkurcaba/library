@@ -4,6 +4,7 @@ package library.Login;
 import Brokers.LoginDataBroker;
 import Dtos.LoginDataDto;
 import Entities.AccountType;
+import Entities.LoginData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,6 +42,19 @@ public class LoginHelper {
             return loginDataDto.getType();
         }
     }
+
+    public void changePassword(String aLogin,byte[] aNewPassword) throws NoResultException {
+        LoginDataBroker dataBroker = new LoginDataBroker();
+        dataBroker.changePassword(aLogin,aNewPassword);
+    }
+
+    public String getMail(String aLogin)
+    {
+        LoginDataBroker dataBroker = new LoginDataBroker();
+        LoginData loginData = dataBroker.getAccount(aLogin);
+        return loginData.getEmail();
+    }
+
 
     public byte[] createPasswordHash(String aPassword)
     {

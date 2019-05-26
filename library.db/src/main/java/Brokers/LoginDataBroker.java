@@ -19,6 +19,8 @@ public class LoginDataBroker {
     private static Logger logger = LogManager.getLogger(LoginDataBroker.class);
     private static String CHECK_ACCOUNT = "SELECT l FROM LoginData l where l.accountName = :login AND " +
             "l.password = :password";
+    private static String GET_ACCOUNT = "SELECT l from LoginData l where l.accountName = :login";
+
     private EntityManager entityManager = PersistenceManager.emf.createEntityManager();
 
     public LoginDataDto checkLoginData(String aLogin, byte[] aPassword)
@@ -32,6 +34,35 @@ public class LoginDataBroker {
         {
              LoginData loginData = query.getSingleResult();
              return new LoginDataDto(loginData);
+        }catch (NoResultException aEx)
+        {
+            logger.debug("Cannot login - account doesn't exist");
+            throw aEx;
+        }
+    }
+
+    public void changePassword(String aLogin,byte[] aNewPassword) throws NoResultException
+    {
+        TypedQuery<LoginData> query = entityManager.createQuery(GET_ACCOUNT,LoginData.class);
+        query.setParameter("login",aLogin);
+
+        LoginData loginData = query.getSingleResult();
+        loginData.setPassword(aNewPassword);
+        entityManager.getTransaction().begin();
+        entityManager.getTransaction().commit();
+
+    }
+
+    public LoginData getAccount(String aLogin) throws NoResultException
+    {
+        logger.debug("Trying to login on account: " + aLogin);
+        TypedQuery<LoginData> query = entityManager.createQuery(GET_ACCOUNT, LoginData.class);
+        query.setParameter("login", aLogin);
+
+        try
+        {
+            LoginData loginData = query.getSingleResult();
+            return loginData;
         }catch (NoResultException aEx)
         {
             logger.debug("Cannot login - account doesn't exist");

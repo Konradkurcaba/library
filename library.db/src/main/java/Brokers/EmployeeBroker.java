@@ -1,5 +1,6 @@
 package Brokers;
 
+import Entities.LoginData;
 import EntityManager.PersistenceManager;
 import Dtos.EmployeeDto;
 import Entities.Employee;
@@ -30,10 +31,14 @@ public class EmployeeBroker implements BrokerIf<EmployeeDto>{
                     Employee employee = new Employee();
                     entityManager.persist(employee);
                     employeeDto.setEmployee(employee);
+                    LoginData loginData = new LoginData();
+                    entityManager.persist(loginData);
+                    employee.setLoginData(loginData);
                 });
 
         employeeDtos.stream()
                 .forEach(EmployeeDto::commitChanges);
+
         entityManager.getTransaction().begin();
         entityManager.getTransaction().commit();
     }

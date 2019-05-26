@@ -1,18 +1,19 @@
 package Entities;
 
+
 import javax.persistence.*;
 
 @Entity
 public class LoginData {
 
     @Id
+    @GeneratedValue
+    private long id;
     @Column(name = "account_name")
     private String accountName;
+    private String email;
     private AccountType type;
     private byte[] password;
-    @OneToOne
-    @JoinColumn(name= "employee_id")
-    private Employee employee;
 
     public String getAccountName() {
         return accountName;
@@ -38,11 +39,11 @@ public class LoginData {
         this.password = password;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

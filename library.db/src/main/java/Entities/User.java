@@ -1,10 +1,6 @@
 package Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +24,17 @@ public class User {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	private String email;
+
+	public LoginData getLoginData() {
+		return loginData;
+	}
+
+	public void setLoginData(LoginData loginData) {
+		this.loginData = loginData;
+	}
+
+	@OneToOne
+	private LoginData loginData;
 	
 	public long getId() {
 		return userId;

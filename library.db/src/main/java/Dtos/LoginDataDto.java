@@ -36,11 +36,6 @@ public class LoginDataDto {
         loginData.setPassword(password);
     }
 
-    public Employee getEmployee() {
-        return loginData.getEmployee();
-    }
 
-    public void setEmployee(Employee employee) {
-        loginData.setEmployee(employee);
-    }
+
 }

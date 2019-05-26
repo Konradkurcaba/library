@@ -1,5 +1,6 @@
 package Dtos;
 
+import Entities.AccountType;
 import Validator.DtoValidator;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -16,6 +17,7 @@ public class EmployeeDto implements DtoCaValue {
     private StringProperty city;
     private StringProperty street;
     private StringProperty houseNumber;
+    private StringProperty email;
 
     private DtoValidator dtoValidator = new DtoValidator();
 
@@ -29,6 +31,7 @@ public class EmployeeDto implements DtoCaValue {
         city = new SimpleStringProperty(employee.getCity());
         street = new SimpleStringProperty(employee.getStreet());
         houseNumber = new SimpleStringProperty(employee.getHouseNumber());
+        email = new SimpleStringProperty(employee.getEmail());
         isPersisted = true;
     }
 
@@ -40,6 +43,7 @@ public class EmployeeDto implements DtoCaValue {
         city = new SimpleStringProperty("");
         street = new SimpleStringProperty("");
         houseNumber = new SimpleStringProperty("");
+        email = new SimpleStringProperty("");
         isPersisted = false;
     }
 
@@ -110,13 +114,26 @@ public class EmployeeDto implements DtoCaValue {
         this.houseNumber.set(houseNumber);
     }
 
+    public StringProperty getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        dtoValidator.checkEmail(email);
+        this.email.set(email);
+    }
+
     public void commitChanges() {
+
         employee.setFirstName(firstName.getValue());
         employee.setLastName(lastName.getValue());
         employee.setZipCode(zipCode.getValue());
         employee.setCity(city.getValue());
         employee.setHouseNumber(houseNumber.getValue());
         employee.setStreet(street.getValue());
+        employee.getLoginData().setEmail(email.getValue());
+        employee.getLoginData().setAccountName(email.getValue());
+        employee.getLoginData().setType(AccountType.employee);
 
         isPersisted = true;
     }

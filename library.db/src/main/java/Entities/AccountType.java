@@ -1,5 +1,5 @@
 package Entities;
 
 public enum AccountType {
-    employee,admin,notLogged
+    employee,admin,notLogged,user
 }
