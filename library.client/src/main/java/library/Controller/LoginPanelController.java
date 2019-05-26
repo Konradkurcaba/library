@@ -77,7 +77,7 @@ public class LoginPanelController {
         try {
 
             FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
-                    .getResource(MenuController.MENU_FXML_PATH));
+                    .getResource(MenuController.ADMIN_MENU_FXML_PATH));
 
             Parent root = loader.load();
             primaryStage.setScene(new Scene(root));

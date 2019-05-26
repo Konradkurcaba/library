@@ -17,7 +17,8 @@ public class MenuController {
 
     private final static Logger logger = LogManager.getLogger();
 
-    public final static String MENU_FXML_PATH = "FXML/client.fxml";
+    public final static String MENU_FXML_PATH = "FXML/employeeMenu.fxml";
+    public final static String ADMIN_MENU_FXML_PATH = "FXML/adminMenu.fxml";
 
     @FXML
     private Button booksButton;
@@ -27,6 +28,9 @@ public class MenuController {
     private Button userButton;
     @FXML
     private Button logOutButton;
+    //this button should be visible only when admin is logged
+    @FXML
+    private Button employeeButton;
 
     private Stage primaryStage;
 
@@ -52,6 +56,11 @@ public class MenuController {
 
         logOutButton.setOnAction(event ->{
             logOut();
+        });
+
+        employeeButton.setOnAction( event -> {
+            EmployeePanelController controller = new EmployeePanelController();
+            openNewWindow(controller);
         });
 
     }

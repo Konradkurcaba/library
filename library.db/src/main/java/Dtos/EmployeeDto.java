@@ -10,12 +10,12 @@ public class EmployeeDto implements DtoCaValue {
     private Employee employee;
     private boolean isPersisted;
 
-    StringProperty firstName;
-    StringProperty lastName;
-    StringProperty zipCode;
-    StringProperty city;
-    StringProperty street;
-    StringProperty houseNumber;
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private StringProperty zipCode;
+    private StringProperty city;
+    private StringProperty street;
+    private StringProperty houseNumber;
 
     private DtoValidator dtoValidator = new DtoValidator();
 
@@ -119,6 +119,10 @@ public class EmployeeDto implements DtoCaValue {
         employee.setStreet(street.getValue());
 
         isPersisted = true;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override

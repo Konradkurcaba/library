@@ -23,6 +23,15 @@ public class EmployeeBroker implements BrokerIf<EmployeeDto>{
 
     @Override
     public void commitChanges(List<EmployeeDto> employeeDtos) {
+
+        employeeDtos.stream()
+                .filter(employeeDto -> !employeeDto.isPersisted())
+                .forEach(employeeDto -> {
+                    Employee employee = new Employee();
+                    entityManager.persist(employee);
+                    employeeDto.setEmployee(employee);
+                });
+
         employeeDtos.stream()
                 .forEach(EmployeeDto::commitChanges);
         entityManager.getTransaction().begin();
