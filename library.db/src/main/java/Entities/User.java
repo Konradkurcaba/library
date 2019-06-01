@@ -24,6 +24,8 @@ public class User {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	private String email;
+	@OneToOne
+	private LoginData loginData;
 
 	public LoginData getLoginData() {
 		return loginData;
@@ -33,8 +35,7 @@ public class User {
 		this.loginData = loginData;
 	}
 
-	@OneToOne
-	private LoginData loginData;
+
 	
 	public long getId() {
 		return userId;

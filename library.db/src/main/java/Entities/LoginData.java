@@ -15,6 +15,10 @@ public class LoginData {
     private AccountType type;
     private byte[] password;
 
+    public long getId() {
+        return id;
+    }
+
     public String getAccountName() {
         return accountName;
     }

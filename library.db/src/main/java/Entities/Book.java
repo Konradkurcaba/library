@@ -23,8 +23,6 @@ public class Book {
     @Column(name = "book_id")
     private long bookId;
     private String uuid = UUID.randomUUID().toString();
-    @ManyToMany(mappedBy = "books")
-    private Set<Borrowing> borrowings;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

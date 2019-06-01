@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class BorrowingBroker implements BrokerIf<BorrowingDto> {
 
-    private EntityManager entityManager = PersistenceManager.emf.createEntityManager();
+    protected EntityManager entityManager = PersistenceManager.emf.createEntityManager();
     private static String GET_ALL = "SELECT b FROM Borrowing b";
 
     @Override

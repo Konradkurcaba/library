@@ -48,6 +48,7 @@ public class Main extends Application {
 		LoginData loginData = new LoginData();
 		loginData.setAccountName("admin");
 		LoginHelper loginHelper = new LoginHelper();
+		loginData.setType(AccountType.admin);
 		byte[] hash = loginHelper.createPasswordHash("password");
 		loginData.setPassword(hash);
 

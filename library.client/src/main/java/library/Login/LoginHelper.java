@@ -11,19 +11,20 @@ import org.apache.logging.log4j.Logger;
 import javax.persistence.NoResultException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 
 public class LoginHelper {
 
     public final static String HASH_ALGORITHM = "SHA-256";
     private final static Logger logger = LogManager.getLogger(LoginHelper.class);
-    private static LoginDataDto loginDataDto;
+    private static LoginData loginData;
 
 
     public static boolean tryToLogin(String aLogin, byte[] aPassword) {
         try {
             LoginDataBroker dataBroker = new LoginDataBroker();
-            loginDataDto = dataBroker.checkLoginData(aLogin, aPassword);
+            loginData = dataBroker.checkLoginData(aLogin, aPassword);
         } catch (NoResultException aEx) {
             logger.debug(aEx);
             return false;
@@ -32,20 +33,42 @@ public class LoginHelper {
     }
     public String getCurrentUserLogin()
     {
-        return loginDataDto.getAccountName();
+        return loginData.getAccountName();
     }
 
     public AccountType getCurrentAccountType()
     {
-        if(loginDataDto == null) return AccountType.notLogged;
+        if(loginData == null) return AccountType.notLogged;
         else {
-            return loginDataDto.getType();
+            return loginData.getType();
         }
+    }
+
+    public LoginData getLoginData()
+    {
+        return loginData;
     }
 
     public void changePassword(String aLogin,byte[] aNewPassword) throws NoResultException {
         LoginDataBroker dataBroker = new LoginDataBroker();
         dataBroker.changePassword(aLogin,aNewPassword);
+    }
+
+    /**
+     *
+     * @param oldPassword current password
+     * @param newPassword new password
+     * @return true if password is changed, false if something go wrong.
+     */
+    public boolean checkAndChangePassword(String oldPassword, String newPassword)
+    {
+        byte[] oldPasswordHash = createPasswordHash(oldPassword);
+        if(Arrays.equals(oldPasswordHash,loginData.getPassword()))
+        {
+            changePassword(loginData.getAccountName(),createPasswordHash(newPassword));
+            return true;
+        }
+        else return false;
     }
 
     public String getMail(String aLogin)
@@ -76,7 +99,7 @@ public class LoginHelper {
 
     public static void logout()
     {
-        loginDataDto = null;
+        loginData = null;
     }
 
 }

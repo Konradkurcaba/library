@@ -13,27 +13,26 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
-public class MenuController {
+public class UserMenuController {
 
     private final static Logger logger = LogManager.getLogger();
 
-    public final static String MENU_FXML_PATH = "FXML/employeeMenu.fxml";
-    public final static String ADMIN_MENU_FXML_PATH = "FXML/adminMenu.fxml";
+    public final static String USER_MENU_FXML_PATH = "FXML/userMenu.fxml";
+
+    @FXML
+    protected Button borrowButton;
 
     @FXML
     private Button booksButton;
-    @FXML
-    private Button borrowButton;
-    @FXML
-    private Button userButton;
+
     @FXML
     private Button logOutButton;
     //this button should be visible only when admin is logged
+
     @FXML
-    private Button employeeButton;
+    private Button changePasswordButton;
 
-    private Stage primaryStage;
-
+    protected Stage primaryStage;
 
 
     public void init(Stage aPrimaryStage)
@@ -44,13 +43,9 @@ public class MenuController {
             BooksPanelController controller = new BooksPanelController();
             openNewWindow(controller);
         });
-
         borrowButton.setOnAction(event -> {
-            BorrowingPanelController controller = new BorrowingPanelController();
-            openNewWindow(controller);
-        });
-        userButton.setOnAction(event -> {
-            UserPanelController controller = new UserPanelController();
+            LoginHelper loginHelper = new LoginHelper();
+            UserBorrowingPanelController controller = new UserBorrowingPanelController(loginHelper.getLoginData());
             openNewWindow(controller);
         });
 
@@ -58,14 +53,13 @@ public class MenuController {
             logOut();
         });
 
-        employeeButton.setOnAction( event -> {
-            EmployeePanelController controller = new EmployeePanelController();
-            openNewWindow(controller);
+        changePasswordButton.setOnAction( event -> {
+            openChangePasswordWindow();
         });
 
     }
 
-    private void openNewWindow(AbstractWindowTableController aController)
+    protected void openNewWindow(AbstractWindowTableController aController)
     {
         try
         {
@@ -77,7 +71,7 @@ public class MenuController {
 
             loader.setController(aController);
             Parent root = loader.load();
-            aController.init();
+            aController.init(false);
             newWindowStage.setScene(new Scene(root));
             newWindowStage.showAndWait();
         }
@@ -87,7 +81,7 @@ public class MenuController {
         }
     }
 
-    private void logOut()
+    protected void logOut()
     {
         try
         {
@@ -105,6 +99,28 @@ public class MenuController {
             logger.debug(aEx);
         }
     }
+
+    protected void openChangePasswordWindow()
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
+                    .getResource(ChangePasswordController.FXML_PATH));
+            Stage newWindowStage = new Stage();
+            newWindowStage.initModality(Modality.WINDOW_MODAL);
+            newWindowStage.initOwner(primaryStage);
+
+            Parent root = loader.load();
+            newWindowStage.setScene(new Scene(root));
+            newWindowStage.showAndWait();
+        }
+        catch (IOException aEx )
+        {
+            logger.debug(aEx);
+        }
+    }
+
+
 
 
 
