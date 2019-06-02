@@ -23,17 +23,16 @@ public class LoginDataBroker {
 
     private EntityManager entityManager = PersistenceManager.emf.createEntityManager();
 
-    public LoginDataDto checkLoginData(String aLogin, byte[] aPassword)
+    public LoginData checkLoginData(String aLogin, byte[] aPassword)
     {
         logger.debug("Trying to login on account: " + aLogin);
         TypedQuery<LoginData> query = entityManager.createQuery(CHECK_ACCOUNT, LoginData.class);
         query.setParameter("login", aLogin);
         query.setParameter("password",aPassword);
-
         try
         {
              LoginData loginData = query.getSingleResult();
-             return new LoginDataDto(loginData);
+             return loginData;
         }catch (NoResultException aEx)
         {
             logger.debug("Cannot login - account doesn't exist");

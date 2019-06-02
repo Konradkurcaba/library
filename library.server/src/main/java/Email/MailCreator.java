@@ -43,11 +43,15 @@ public class MailCreator {
     {
         Element mainTable = aEmail.getElementById("mainTable");
         Element tableContent = mainTable.selectFirst("tbody");
-        List<BookDto> books = new BookBroker().getBooksToNotify();
+        BookBroker bookBroker = new BookBroker();
+        List<BookDto> books = bookBroker.getBooksToNotify();
 
         books.stream()
                 .map(this::createRow)
                 .forEach(tableContent::append);
+
+        bookBroker.markBooksAsNotified(books);
+
 
         return aEmail;
     }

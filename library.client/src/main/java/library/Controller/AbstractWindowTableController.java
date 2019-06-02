@@ -38,20 +38,40 @@ public abstract class AbstractWindowTableController<T> {
 	private Button newButton;
 	@FXML
 	private Button resetButton;
+	@FXML
+	private Label editModeLabel;
 	
 	protected abstract List configureTableViewColumns();
 	
-	public void init()
+	public void init(boolean edit)
 	{
+		if(edit)
+		{
+			initButtons();
+		}else
+		{
+			hideButtons();
+		}
 		windowLabel.setText(windowTitle);
 		initButtons();
 		tableView.getColumns().addAll(configureTableViewColumns());
 		tableView.getItems().addAll(broker.getAll());
+
+
+
 	}
 
+	private void hideButtons()
+	{
+		saveButton.setVisible(false);
+		resetButton.setVisible(false);
+		newButton.setVisible(false);
+		deleteButton.setVisible(false);
+		onEditButton.setVisible(false);
+		editModeLabel.setVisible(false);
+	}
 
-
-	protected void initButtons()
+	private void initButtons()
 	{
 		offEditMode();
 		

@@ -5,13 +5,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Borrowing {
@@ -29,8 +23,7 @@ public class Borrowing {
 	@JoinColumn(name = "user_id")
 	User user;
 	
-	@ManyToMany()
-	@JoinColumn(name = "book_id")
+	@OneToMany()
 	Set<Book> books = new HashSet<>();
 
 	@Column(name = "start_borrow_date")

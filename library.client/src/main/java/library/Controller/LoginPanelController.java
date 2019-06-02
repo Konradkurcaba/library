@@ -103,15 +103,30 @@ public class LoginPanelController {
 
     private void openMainMenu(AccountType aAccountType)
     {
+        String fxmlPath = null;
+
+        switch (aAccountType)
+        {
+            case user:
+                fxmlPath = UserMenuController.USER_MENU_FXML_PATH;
+                break;
+            case employee:
+                fxmlPath = EmployeeMenuController.FXML_PATH;
+                break;
+            case admin:
+                fxmlPath = AdminMenuController.ADMIN_MENU_FXML_PATH;
+                break;
+        }
+
         try {
 
             FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader()
-                    .getResource(MenuController.ADMIN_MENU_FXML_PATH));
+                    .getResource(fxmlPath));
 
             Parent root = loader.load();
             primaryStage.setScene(new Scene(root));
 
-            MenuController controller = loader.getController();
+            UserMenuController controller = loader.getController();
             controller.init(primaryStage);
 
         }catch (Exception aEx)

@@ -16,4 +16,16 @@ public class Dialog {
             error.showError();
         }
     }
+
+    public void infoMessage(String text)
+    {
+        if(!text.isEmpty()) {
+            Notifications info = Notifications.create()
+                    .title("Info!")
+                    .position(Pos.CENTER)
+                    .hideAfter(Duration.seconds(10))
+                    .text(text);
+            info.showInformation();
+        }
+    }
 }

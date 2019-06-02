@@ -32,7 +32,7 @@ public class RemindPasswordController {
             {
                 remindPassword(login);
                 Dialog validator = new Dialog();
-                validator.errorMessage("Nowe hasło zostało wysłane");
+                validator.infoMessage("Nowe hasło zostało wysłane");
             }
         });
     }
@@ -41,12 +41,14 @@ public class RemindPasswordController {
     private void remindPassword(String aLogin)
     {
         try {
+
             LoginHelper loginHelper = new LoginHelper();
             String newPassword = generateRandomPassword();
             byte[] newPasswordHash = loginHelper.createPasswordHash(newPassword);
             LoginHelper helper = new LoginHelper();
             helper.changePassword(aLogin, newPasswordHash);
             sendEmailWithNewPassword(aLogin,newPassword);
+
         }catch (NoResultException aEx)
         {
             Dialog validator = new Dialog();
@@ -64,7 +66,6 @@ public class RemindPasswordController {
         LoginHelper loginHelper = new LoginHelper();
         String eMail = loginHelper.getMail(aLogin);
         emailSender.sendMail(eMail,"Nowe haslo",aNewPassword);
-
     }
 
     private String generateRandomPassword() {
@@ -83,6 +84,5 @@ public class RemindPasswordController {
 
         return generatedString;
     }
-
 
 }

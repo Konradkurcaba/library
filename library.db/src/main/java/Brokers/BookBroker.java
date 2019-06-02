@@ -86,9 +86,14 @@ public class BookBroker implements BrokerIf<BookDto> {
 				.collect(Collectors.toList());
 	}
 
-	public void markBooksAsNotified()
+	public void markBooksAsNotified(List<BookDto> aBooks)
 	{
-		//to do
+		aBooks.stream()
+				.map(BookDto::getBook)
+				.forEach(book -> {book.setWasNotificationSent(true);});
+
+		entityManager.getTransaction().begin();
+		entityManager.getTransaction().commit();
 	}
 
 	

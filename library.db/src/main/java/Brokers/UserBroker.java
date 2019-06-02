@@ -54,7 +54,10 @@ public class UserBroker implements BrokerIf<UserDto> {
         entityManager.getTransaction().begin();
         aDtoList.stream()
                 .map(UserDto::getUser)
-                .forEach(entityManager::remove);
+                .forEach(user ->{
+                    entityManager.remove(user.getLoginData());
+                    entityManager.remove(user);
+                });
         entityManager.getTransaction().commit();
     }
 

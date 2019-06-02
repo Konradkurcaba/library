@@ -45,9 +45,13 @@ public class EmployeeBroker implements BrokerIf<EmployeeDto>{
 
     @Override
     public void delete(List<EmployeeDto> employeeDtos) {
+
         employeeDtos.stream()
                 .map(EmployeeDto::getEmployee)
-                .forEach(entityManager::remove);
+                .forEach(employee -> {
+                    entityManager.remove(employee.getLoginData());
+                    entityManager.remove(employee);
+                });
     }
 
     @Override

@@ -131,6 +131,7 @@ public class EmployeeDto implements DtoCaValue {
         employee.setCity(city.getValue());
         employee.setHouseNumber(houseNumber.getValue());
         employee.setStreet(street.getValue());
+        employee.setEmail(email.getValue());
         employee.getLoginData().setEmail(email.getValue());
         employee.getLoginData().setAccountName(email.getValue());
         employee.getLoginData().setType(AccountType.employee);

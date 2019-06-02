@@ -7,6 +7,8 @@ import Dtos.BorrowingDto;
 import Dtos.DtoType;
 import Dtos.EmployeeDto;
 import Dtos.UserDto;
+import Entities.AccountType;
+import Entities.LoginData;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,14 +20,16 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import library.Controls.LibraryContentAssist;
+import library.Login.LoginHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class BorrowingPanelController extends AbstractWindowTableController<BorrowingDto> {
+public class BorrowingPanelController extends AbstractWindowTableController<BorrowingDto> {
 
     private static final Logger logger = LogManager.getLogger(BooksPanelController.class);
 
@@ -35,9 +39,12 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
     }
 
     @Override
-    public void init() {
-        super.init();
-        configureContextMenu();
+    public void init(boolean aEdit) {
+        super.init(aEdit);
+        LoginHelper loginHelper = new LoginHelper();
+        if(loginHelper.getCurrentAccountType() != AccountType.user) {
+            configureContextMenu();
+        }
     }
 
     @Override
@@ -70,7 +77,7 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
                     .get(event.getTablePosition().getRow())
                     .setEndDate(event.getNewValue());
         });
-        columns.add(endDateCol);
+
 
         TableColumn<BorrowingDto,Boolean> isReturned = new TableColumn<>("Oddane?");
         isReturned.setCellValueFactory(borrowingDto -> {return borrowingDto.getValue().returnedProperty();});
@@ -90,6 +97,11 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
         tableView.setContextMenu(contextMenu);
     }
 
+    private void filter()
+    {
+
+    }
+
     private void openDetailsWindow(BorrowingDto aSource)
     {
         try
@@ -101,7 +113,7 @@ public final class BorrowingPanelController extends AbstractWindowTableControlle
             BooksDetailController controller = new BooksDetailController("Szczegóły",aSource);
             loader.setController(controller);
             Parent root = loader.load();
-            controller.init();
+            controller.init(true);
             newWindowStage.setScene(new Scene(root));
             newWindowStage.showAndWait();
         }
