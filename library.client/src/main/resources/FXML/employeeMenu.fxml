@@ -24,12 +24,12 @@
             <Font name="Century Gothic" size="46.0" />
          </font>
       </Text>
-      <Button fx:id="booksButton" layoutX="215.0" layoutY="151.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zasoby" textOverrun="CLIP">
+      <Button fx:id="booksButton" layoutX="108.0" layoutY="172.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zasoby" textOverrun="CLIP">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="borrowButton" layoutX="215.0" layoutY="207.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Wypożyczenia">
+      <Button fx:id="borrowButton" layoutX="326.0" layoutY="172.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Wypożyczenia">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
@@ -60,11 +60,14 @@
             <Reflection />
          </effect>
       </Line>
-      <Button fx:id="userButton" layoutX="215.0" layoutY="262.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Klient">
+      <Button fx:id="userButton" layoutX="108.0" layoutY="241.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Klient">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="changePasswordButton" layoutX="274.0" layoutY="392.0" mnemonicParsing="false" text="Zmień hasło" />
+      <Button fx:id="changePasswordButton" layoutX="326.0" layoutY="241.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zmień hasło">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>

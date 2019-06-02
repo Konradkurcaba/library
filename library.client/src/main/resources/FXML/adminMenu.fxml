@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="483.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.Controller.AdminMenuController">
+<AnchorPane prefHeight="483.0" prefWidth="588.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.Controller.AdminMenuController">
    <children>
       <ImageView fitHeight="122.0" fitWidth="601.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,27 +24,27 @@
             <Font name="Century Gothic" size="46.0" />
          </font>
       </Text>
-      <Button fx:id="booksButton" layoutX="215.0" layoutY="151.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zasoby" textOverrun="CLIP">
+      <Button fx:id="booksButton" layoutX="111.0" layoutY="207.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zasoby" textOverrun="CLIP">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="borrowButton" layoutX="215.0" layoutY="207.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Wypożyczenia">
+      <Button fx:id="borrowButton" layoutX="333.0" layoutY="207.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Wypożyczenia">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="logOutButton" layoutX="108.0" layoutY="383.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Wyloguj">
+      <Button fx:id="logOutButton" layoutX="119.0" layoutY="393.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Wyloguj">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="364.0" layoutY="383.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Pomoc">
+      <Button layoutX="375.0" layoutY="393.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Pomoc">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Line cache="true" endX="485.0" layoutX="115.0" layoutY="324.0" startX="-115.0" stroke="#2b0349" strokeLineCap="ROUND" style="-fx-effect: 2;">
+      <Line cache="true" endX="485.0" layoutX="115.0" layoutY="354.0" startX="-115.0" stroke="#2b0349" strokeLineCap="ROUND" style="-fx-effect: 2;">
          <fill>
             <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
                <stops>
@@ -60,13 +60,22 @@
             <Reflection />
          </effect>
       </Line>
-      <Button fx:id="userButton" layoutX="215.0" layoutY="262.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Klient">
+      <Button fx:id="userButton" layoutX="333.0" layoutY="156.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Klient">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="employeeButton" layoutX="82.0" layoutY="229.0" mnemonicParsing="false" text="Pracownicy" />
-      <Button fx:id="changePasswordButton" layoutX="260.0" layoutY="392.0" mnemonicParsing="false" text="Zmień hasło" />
-      <Button fx:id="emailButton" layoutX="428.0" layoutY="270.0" mnemonicParsing="false" text="Email o nowych książkach" />
+      <Button fx:id="employeeButton" layoutX="111.0" layoutY="156.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Pracownicy">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Button>
+      <Button fx:id="changePasswordButton" layoutX="333.0" layoutY="261.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zmień hasło">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Button>
+      <Button fx:id="emailButton" layoutX="111.0" layoutY="261.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Przyślij nowości">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>

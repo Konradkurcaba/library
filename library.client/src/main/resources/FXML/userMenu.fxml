@@ -24,12 +24,12 @@
             <Font name="Century Gothic" size="46.0" />
          </font>
       </Text>
-      <Button fx:id="booksButton" layoutX="215.0" layoutY="169.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zasoby" textOverrun="CLIP">
+      <Button fx:id="booksButton" layoutX="87.0" layoutY="169.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Zasoby" textOverrun="CLIP">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="borrowButton" layoutX="215.0" layoutY="242.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Wypożyczenia">
+      <Button fx:id="borrowButton" layoutX="343.0" layoutY="169.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" stylesheets="@../css/DarkTheme.css" text="Wypożyczenia">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>
@@ -60,6 +60,9 @@
             <Reflection />
          </effect>
       </Line>
-      <Button fx:id="changePasswordButton" layoutX="266.0" layoutY="404.0" mnemonicParsing="false" text="Zmień hasło" />
+      <Button fx:id="changePasswordButton" layoutX="223.0" layoutY="242.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="155.0" stylesheets="@../css/DarkTheme.css" text="Zmień hasło">
+         <font>
+            <Font name="Century Gothic" size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>
