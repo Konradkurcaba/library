@@ -60,7 +60,7 @@ public class BookDto implements DtoCaValue,DtoWithCa {
     }
 
     public void setTitle(String aTitle) {
-        dtoValidator.checkNull(aTitle);
+     //   dtoValidator.checkNull(aTitle);
         title.setValue(aTitle);
     }
 
@@ -87,7 +87,7 @@ public class BookDto implements DtoCaValue,DtoWithCa {
     }
 
     public void setAuthor(String aAuthor) {
-        dtoValidator.checkSmallFirstLetters(aAuthor);
+      //  dtoValidator.checkSmallFirstLetters(aAuthor);
         author.setValue(aAuthor);
     }
 

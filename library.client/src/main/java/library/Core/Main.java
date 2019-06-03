@@ -21,7 +21,7 @@ public class Main extends Application {
 	
 	public static void main(String...aArgs)
 	{
-		dirtyCode();
+		//dirtyCode();
 		launch();
 	}
 
@@ -55,8 +55,15 @@ public class Main extends Application {
 		Category category = new Category("Dla dzieci");
 		Category category1 = new Category("Fantastyka");
 		Category category2 = new Category("Kulinarne");
-
-
+		Category category3 = new Category("Literatura współczesna");
+		Category category4 = new Category("Horror");
+		Category category5 = new Category("Przygodowe");
+		Category category6 = new Category("Poezja");
+		Category category7 = new Category("Romans");
+		Category category8 = new Category("Literatura popularnonaukowa");
+		Category category9 = new Category("Czarna komedia");
+		Category category10 = new Category("Komedia");
+		Category category11 = new Category("Baśnie");
 
 		Employee employee = new Employee();
 
@@ -97,10 +104,19 @@ public class Main extends Application {
 //		entityManager.persist(user);
 //		entityManager.persist(user2);
 //		entityManager.persist(borrowing);
-		entityManager.persist(loginData);
-		entityManager.persist(category);
-		entityManager.persist(category1);
-		entityManager.persist(category2);
+//		entityManager.persist(loginData);
+	//	entityManager.persist(category);
+	//	entityManager.persist(category1);
+	//	entityManager.persist(category2);
+		entityManager.persist(category3);
+		entityManager.persist(category4);
+		entityManager.persist(category5);
+		entityManager.persist(category6);
+		entityManager.persist(category7);
+		entityManager.persist(category8);
+		entityManager.persist(category9);
+		entityManager.persist(category10);
+		entityManager.persist(category11);
 		entityManager.getTransaction().commit();
 
 
