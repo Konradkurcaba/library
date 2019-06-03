@@ -78,8 +78,9 @@ public class BorrowingPanelController extends AbstractWindowTableController<Borr
                     .setEndDate(event.getNewValue());
         });
 
+        columns.add(endDateCol);
 
-        TableColumn<BorrowingDto,Boolean> isReturned = new TableColumn<>("Oddane?");
+        TableColumn<BorrowingDto,Boolean> isReturned = new TableColumn<>("Status");
         isReturned.setCellValueFactory(borrowingDto -> {return borrowingDto.getValue().returnedProperty();});
         isReturned.setCellFactory(tc -> new CheckBoxTableCell<>());
 
