@@ -9,13 +9,18 @@ import library.Validation.Dialog;
 
 import javax.mail.MessagingException;
 import javax.persistence.NoResultException;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 
 public class RemindPasswordController {
 
     public static final String REMIND_FXML = "FXML/resetpassword.fxml";
+    private static final String EMAIL_HTML = "password.html";
 
     @FXML
     private TextField loginTextField;
@@ -65,7 +70,14 @@ public class RemindPasswordController {
         EmailSender emailSender = new EmailSender();
         LoginHelper loginHelper = new LoginHelper();
         String eMail = loginHelper.getMail(aLogin);
-        emailSender.sendMail(eMail,"Nowe haslo",aNewPassword);
+        String rawEmailBody;
+        try(DataInputStream inputStream = new DataInputStream(getClass().getClassLoader().getResourceAsStream(EMAIL_HTML));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream)))
+        {
+            rawEmailBody = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+        }
+        String newEmailBody = rawEmailBody.replace("1nsd2kn@m",aNewPassword);
+        emailSender.sendMail(eMail,"Nowe haslo",newEmailBody);
     }
 
     private String generateRandomPassword() {
