@@ -15,7 +15,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane prefHeight="483.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="128.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
@@ -24,7 +23,7 @@
          </image>
       </ImageView>
       <TableView fx:id="tableView" layoutY="119.0" prefHeight="225.0" prefWidth="600.0" />
-      <Label fx:id="windowLabel" layoutX="232.0" layoutY="14.0" text="Książki" textFill="WHITE">
+      <Label fx:id="windowLabel" layoutY="9.0" prefHeight="101.0" prefWidth="600.0" style="-fx-text-alignment: center; -fx-alignment: center;" text="Książki" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="46.0" />
          </font>
@@ -77,32 +76,22 @@
             <Reflection />
          </effect>
       </Line>
-      <Button fx:id="saveButton" layoutX="230.0" layoutY="405.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" stylesheets="@../css/DarkTheme.css" text="Zapisz">
+      <Button fx:id="saveButton" layoutX="341.0" layoutY="401.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" stylesheets="@../css/DarkTheme.css" text="Zapisz">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="deleteButton" layoutX="230.0" layoutY="445.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" stylesheets="@../css/DarkTheme.css" text="Usuń">
+      <Button fx:id="deleteButton" layoutX="341.0" layoutY="441.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" stylesheets="@../css/DarkTheme.css" text="Usuń">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="newButton" layoutX="69.0" layoutY="405.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" stylesheets="@../css/DarkTheme.css" text="Dodaj">
+      <Button fx:id="newButton" layoutX="131.0" layoutY="401.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" stylesheets="@../css/DarkTheme.css" text="Dodaj">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="resetButton" layoutX="69.0" layoutY="445.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" stylesheets="@../css/DarkTheme.css" text="Reset">
-         <font>
-            <Font name="Century Gothic" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="387.0" layoutY="405.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" stylesheets="@../css/DarkTheme.css" text="Powrót">
-         <font>
-            <Font name="Century Gothic" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="387.0" layoutY="445.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="118.0" stylesheets="@../css/DarkTheme.css" text="Wyloguj">
+      <Button fx:id="resetButton" layoutX="131.0" layoutY="441.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" stylesheets="@../css/DarkTheme.css" text="Reset">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
