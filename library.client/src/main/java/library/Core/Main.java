@@ -21,7 +21,7 @@ public class Main extends Application {
 	
 	public static void main(String...aArgs)
 	{
-		dirtyCode();
+		//dirtyCode();
 		launch();
 	}
 

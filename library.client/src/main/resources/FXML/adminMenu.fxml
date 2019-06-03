@@ -39,7 +39,7 @@
             <Font name="Century Gothic" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="375.0" layoutY="393.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Pomoc">
+      <Button fx:id="helpButton" layoutX="375.0" layoutY="393.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" stylesheets="@../css/DarkTheme.css" text="Pomoc">
          <font>
             <Font name="Century Gothic" size="16.0" />
          </font>

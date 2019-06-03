@@ -11,7 +11,10 @@ import library.Login.LoginHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 public class UserMenuController {
 
@@ -27,7 +30,9 @@ public class UserMenuController {
 
     @FXML
     private Button logOutButton;
-    //this button should be visible only when admin is logged
+
+    @FXML
+    private Button helpButton;
 
     @FXML
     private Button changePasswordButton;
@@ -55,6 +60,15 @@ public class UserMenuController {
 
         changePasswordButton.setOnAction( event -> {
             openChangePasswordWindow();
+        });
+
+        helpButton.setOnAction( event -> {
+            try {
+                Desktop.getDesktop().browse(getClass().getClassLoader().getResource("help.html").toURI());
+            }catch (Exception aEx)
+            {
+                aEx.printStackTrace();
+            }
         });
 
     }
